@@ -1,32 +1,117 @@
+
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<body class="dark-edition">
+      <div class="wrapper ">
+          <div class="sidebar" data-color="purple" data-background-color="black">
+          <!--
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+          Tip 2: you can also add an image using data-image tag
+          -->
+              <div class="logo">
+                  <a href="#" class="simple-text logo-normal">
+                      Search
+                  </a>
+              </div>
+              <div class="sidebar-wrapper">
+                  <ul class="nav">
+<!--sidebar here -->
+                  <li class="nav-item active"> 
+                     <router-link to="/" class="nav-link">
+                        <i class=" fa fa-home"></i>
+                        <p>Home</p>
+                      </router-link>
+                  </li>
+                 
+                  <li class="nav-item ">
+                     <router-link to="/topsongs" class="nav-link">
+                      <i class="fa fa-line-chart"></i>
+                      <p>Topsongs</p>
+                     </router-link>
+                  </li>
+
+                  <li class="nav-item">
+                      <router-link to="/genres" class="nav-link">
+                        <i class="material-icons">dashboard</i>
+                        <p>Genres</p> 
+                      </router-link>
+                  </li>
+
+                  <li class="nav-item">
+                    <router-link to="/events" class="nav-link">
+                      <i class="fa fa-music"></i>
+                      <p>Events</p>                
+                    </router-link>
+                  </li>
+
+                  <li class="nav-item">
+                      <router-link to="/performer" class="nav-link">
+                        <i class="fa fa-user-o"></i>
+                        <p>Perfomer</p>
+                      </router-link>
+                  </li>
+
+                  <li class="nav-item">
+                      <router-link to="/playlist" class="nav-link">
+                        <i class="fa fa-tasks"></i>
+                        <p>Playlist</p> 
+                      </router-link>
+                  </li>
+
+                  <li class="nav-item">
+                    <router-link to="/feedback" class="nav-link">    
+                        <i class="fa fa-question"></i>
+                        <p>Feedback</p>
+                    </router-link>    
+                  </li> 
+
+                  </ul>
+              </div>
+          </div>
+
+          <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+              <div class="container-fluid">
+                <div class="navbar-wrapper">
+                  <a class="navbar-brand" href="javascript:void(0)">Home</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="javascript:void(0)">
+                        <i class="material-icons">notifications</i>
+                        <p class="d-lg-none d-md-block">
+                          Notifications
+                        </p>
+                      </a>
+                    </li>
+                    
+                    <!-- your navbar here (left) -->
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <!-- End Navbar -->
+          <div class="content">
+          <div class="container-fluid">
+            <!-- your content here -->
+            <router-view></router-view>
+          </div>
+        </div>
+          </div>         
+      </div>
+  </body>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style src="@/assets/material-dashboard.css">
+ @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons');
+ @import url('https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css');
+ @import '@/assets/external.css';
 </style>
