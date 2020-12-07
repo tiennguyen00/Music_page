@@ -2,7 +2,7 @@
 <template>
 <body class="dark-edition">
       <div class="wrapper ">
-          <div class="sidebar" data-color="purple" data-background-color="black">
+          <div class="sidebar" data-color="azure" data-background-color="black">
           <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -110,8 +110,19 @@
             <router-view></router-view>
           </div>
         </div>
-          </div>         
-      </div>
+  <!-- Footer -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <nav class="float-left">
+              footer
+            </nav>
+            <div class="copyright float-right" >
+              Footer
+            </div>
+          </div>
+        </footer>
+      </div>      
+    </div>
   </body>
 </template>
 

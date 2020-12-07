@@ -1,16 +1,28 @@
 <template>
-    <div class="container">
-        <img class="image" src="@/assets/image/Home/a_litle_love.jpg" alt="image">
+    <div class="wrap">
+        <img class="image" :src="image" alt="image">
         <div class="name">
-            <div class="name_song">A little love</div>
-            <em class="name_performer">Fiona Fung</em>
+            <div class="name_song">{{name_song}}</div>
+            <em class="name_performer">{{name_performer}}</em>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: {
+        id: Number,
+        name_song: String,
+        name_performer: String,
+        image: String
+    }
+}
+</script>
+
 <style scoped>
-    .container{
+    .wrap{
         display: flex;
-        margin: 10px 0;
+        margin: 20px 0;
     }
     .image{
         /* flex-grow: 1; */
@@ -26,7 +38,7 @@
     /* Code bên trong component */
     .name_song{
         font-weight: 400;
-        font-size: 110%;
+        font-size: 90%;
         color: rgba(255, 255, 255, 0.7);
     }
     .name_performer{
