@@ -10,7 +10,7 @@
           -->
               <div class="logo">
                   <a href="#" class="simple-text logo-normal">
-                      Search
+                      LOGO
                   </a>
               </div>
               <div class="sidebar-wrapper">

@@ -3,6 +3,7 @@
 
     <div class="slider">
       <h3 class="title">Featured for you</h3>
+      <img class="image" src="@/assets/image/Home/onmyway_poster.jpg" alt="#">
     </div>
 
     <div class="container">
@@ -75,11 +76,17 @@ export default {
   color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
   font-size: 1.3rem;
-  margin-top: 1rem;
+  margin-top: 1.3rem;
+  margin-bottom: 1.2rem;
 }
+
 .more_album{
   font-weight: 400; 
   font-size: 120%; 
   color: #1DA4B6;
+}
+
+.slider .image{
+  width: 100%;
 }
 </style>
