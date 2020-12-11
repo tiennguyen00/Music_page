@@ -3,7 +3,7 @@
 
     <div class="slider">
       <h3 class="title">Featured for you</h3>
-      <img class="image" src="@/assets/image/Home/onmyway_poster.jpg" alt="#">
+      <img class="image" src="@/assets/image/Home/lockedaway_poster.jpg" alt="#">
     </div>
 
     <div class="container">
@@ -23,13 +23,15 @@
       <h3 class="title">Recommended Albums</h3>
       <div style="display: flex; margin-top: 15px;">
         <li style="list-style-type: none;" v-for="variable in Album" :key="variable.id">
-          <RecommendedAlbum
-            :name_albums = "variable.name_albums"
-            :name_singer = "variable.name_singer"
-            :image = "variable.image"
-          />
+          <a href="#"> <!--Thẻ a ở đây sẽ dùng để truyền link album vào href-->
+            <RecommendedAlbum
+              :name_albums = "variable.name_albums"
+              :name_singer = "variable.name_singer"
+              :image = "variable.image"
+            />
+          </a>
         </li>
-        <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="transform: translateY(3rem); "></i></strong>
+        <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
       </div>
     </div>
 
@@ -56,7 +58,6 @@ export default {
 <style scoped>
 
 .home{
-
   display: grid;
   grid-template-columns: 2.5fr 0.8fr;
 }
