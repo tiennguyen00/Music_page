@@ -15,7 +15,7 @@ export default {
         name_song: String,
         name_performer: String,
         image: String
-    }
+    } 
 }
 </script>
 

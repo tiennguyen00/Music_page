@@ -18,7 +18,7 @@
         display: flex;
         flex-direction: column;
     }
-    .image, .image_shadow{
+    .image, .image_shadow{  
         width: 150px;
         border-radius: 10px;
         transition: 0.3s all ;

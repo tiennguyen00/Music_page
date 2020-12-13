@@ -13,9 +13,9 @@ export default[
     },
     {
     id: 3,
-    image: require(`@/assets/image/Home/way_back_home.jpg`),
-    name_song: "Way back home",
-    name_performer: "SHAUN"
+    image: require(`@/assets/image/Home/locked_away.jpg`),
+    name_song: "Locked away",
+    name_performer: "Cover by Tiffany Alvord"
     },
     {
     id: 4,

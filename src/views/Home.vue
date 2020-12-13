@@ -3,34 +3,51 @@
 
     <div class="slider">
       <h3 class="title">Featured for you</h3>
-      <img class="image" src="@/assets/image/Home/lockedaway_poster.jpg" alt="#">
+
+      <input v-for="variable in Feature" :key="variable.id" type="radio" :id = "variable.name" name="r">
+       
+      <div id="HH" style = "display: flex; width: 400%; height: fit-auto;">
+        <a href="#" v-for="variable in Feature" :key="variable.id">
+          <FeatureForU
+          :image = variable.image
+          />
+        </a>
+      </div>
+       
+      <div class="bar">
+        <label
+        v-for="variable in Feature" :key="variable.id" :for="variable.name"
+        @click="selected = variable.id" :class="{able:selected == variable.id}"></label>
+      </div>
+
     </div>
 
     <div class="container">
       <h3 class="title">Rencently Listened</h3>
       <div class="recently_listened">
-        <li style="list-style-type: none;" v-for="variable in RecentlyListened" :key="variable.id">
+        <a href="#" v-for="variable in RecentlyListened" :key="variable.id">
           <RecentlyListened
           :name_song = "variable.name_song"
           :name_performer = "variable.name_performer"
           :image = "variable.image"
         />
-        </li>
+        </a>
+      </div>
+      <div style="position: relative; text-align: center; padding-top: 20px;">
+        <img style="width: 150px;" src="@/assets/image/Home/tonton_dance.gif" alt="#">
       </div>
     </div>
 
     <div class="recommended_album">
       <h3 class="title">Recommended Albums</h3>
       <div style="display: flex; margin-top: 15px;">
-        <li style="list-style-type: none;" v-for="variable in Album" :key="variable.id">
-          <a href="#"> <!--Thẻ a ở đây sẽ dùng để truyền link album vào href-->
-            <RecommendedAlbum
-              :name_albums = "variable.name_albums"
-              :name_singer = "variable.name_singer"
-              :image = "variable.image"
-            />
-          </a>
-        </li>
+        <a href="#" v-for="variable in Album" :key="variable.id">
+          <RecommendedAlbum
+            :name_albums = "variable.name_albums"
+            :name_singer = "variable.name_singer"
+            :image = "variable.image"
+          />
+        </a>
         <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
       </div>
     </div>
@@ -41,15 +58,42 @@
 <script>
 import RecentlyListened from "@/components/Home/RecentlyListened.vue";
 import RecommendedAlbum from "@/components/Home/RAlbums.vue";
-import {mapState} from "vuex";
+import FeatureForU from "@/components/Home/Feature.vue";
 
+import {mapState} from "vuex";
 export default {
   components:{
     RecentlyListened,
-    RecommendedAlbum
+    RecommendedAlbum,
+    FeatureForU
+  },
+  data(){
+    return {
+      selected: 1 //Biến này để thiết lập poster đc chọn mặc định ban đầu là r1
+    }
+  },
+  mounted: function() {
+    this.startSlide();
+
+  },
+
+  methods: {
+    startSlide(){
+
+      setInterval(()=>{   
+        if(this.selected >= 4)
+          this.selected = 1;
+        else
+          this.selected++;
+      }, 10000)
+
+      setInterval(()=>{   
+        document.getElementsByClassName("able")[0].click();
+      }, 10000)
+    }
   },
   computed: {
-    ...mapState(["RecentlyListened", "Album"])
+    ...mapState(["RecentlyListened", "Album", "Feature"]),
   }
  
 }
@@ -61,18 +105,6 @@ export default {
   display: grid;
   grid-template-columns: 2.5fr 0.8fr;
 }
-.container{
-  padding-right: 0;
-}
-.recently_listened{
-  background-color: #1E1E2D;
-  border-radius: 5px;
-  padding: 10px 30px;
-}
-.recommended_album{
-  grid-column: 1/3;
-}
-
 .title{
   color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
@@ -80,14 +112,69 @@ export default {
   margin-top: 1.3rem;
   margin-bottom: 1.2rem;
 }
-
-.more_album{
-  font-weight: 400; 
-  font-size: 120%; 
-  color: #1DA4B6;
-}
-
+/* ==============CSS Slider==================== */
 .slider .image{
   width: 100%;
 }
+.slider{
+  width: 100%;
+  overflow: hidden;
+}
+
+.bar{
+  width: fit-content;
+  position: absolute;
+  transform: translate(0rem, -2rem);
+}
+
+.bar label{
+  width: 50px;
+  height: 10px;
+  border: 2px solid #fff;
+  margin: 6px;
+  transition: all .4s;
+}
+.able{
+  background-color: #fff;
+}
+input[type = "radio"]{
+  display: none;
+}
+#HH{
+  transition: all .4s;
+}
+#r1:checked ~ #HH{
+  margin-left: 0%;
+}
+#r2:checked ~ #HH{
+  margin-left: -100%;
+}
+#r3:checked ~ #HH{
+  margin-left: -200%;
+}
+#r4:checked ~ #HH{
+  margin-left: -300%;
+}
+/* ==============CSS Rencently_listened==================== */
+.container{
+  padding-right: 0;
+}
+.recently_listened{
+  background-color: #1E1E2D;
+  border-radius: 5px;
+  padding: 10px 30px;
+  border: 2px solid #1DA4B6;
+}
+/* ===============CSS Recommended_album==================== */
+.recommended_album{
+  grid-column: 1/3;
+}
+.more_album{
+  font-weight: 400; 
+  font-size: 120%; 
+ 
+}
+
+
+
 </style>
