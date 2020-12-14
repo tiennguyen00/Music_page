@@ -23,10 +23,10 @@
     </div>
 
     <div class="container">
-      <h3 class="title">Rencently Listened</h3>
+      <h3 class="title">Trending Now</h3>
       <div class="recently_listened">
-        <a href="#" v-for="variable in RecentlyListened" :key="variable.id">
-          <RecentlyListened
+        <a href="#" v-for="variable in TrendingNow" :key="variable.id">
+          <TrendingNow
           :name_song = "variable.name_song"
           :name_performer = "variable.name_performer"
           :image = "variable.image"
@@ -56,14 +56,14 @@
 </template>
 
 <script>
-import RecentlyListened from "@/components/Home/RecentlyListened.vue";
+import TrendingNow from "@/components/Home/TrendingNow.vue";
 import RecommendedAlbum from "@/components/Home/RAlbums.vue";
 import FeatureForU from "@/components/Home/Feature.vue";
 
 import {mapState} from "vuex";
 export default {
   components:{
-    RecentlyListened,
+    TrendingNow,
     RecommendedAlbum,
     FeatureForU
   },
@@ -93,7 +93,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["RecentlyListened", "Album", "Feature"]),
+    ...mapState(["TrendingNow", "Album", "Feature"]),
   }
  
 }

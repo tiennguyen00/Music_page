@@ -21265,9 +21265,9 @@ fieldset[disabled][disabled] .dark-edition .has-danger .form-control, .dark-edit
 .form__field:focus {
   font-weight: 200;
   border-width: 3px;
-  -o-border-image: linear-gradient(to right, purple, #6c757d);
-     border-image: -webkit-gradient(linear, left top, right top, from(purple), to(#6c757d));
-     border-image: linear-gradient(to right, purple, #6c757d);
+  -o-border-image: linear-gradient(to right, #1da4b6, #6c757d);
+     border-image: -webkit-gradient(linear, left top, right top, from(#1da4b6), to(#6c757d));
+     border-image: linear-gradient(to right, #1da4b6, #6c757d);
   border-image-slice: 1;
 }
 
@@ -21278,7 +21278,7 @@ fieldset[disabled][disabled] .dark-edition .has-danger .form-control, .dark-edit
   -webkit-transition: 0.2s;
   transition: 0.2s;
   font-size: 1rem;
-  color: #c04fc0;
+  color: #1da4b6;
   font-weight: 200;
 }
 
