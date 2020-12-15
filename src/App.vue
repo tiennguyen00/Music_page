@@ -2,7 +2,7 @@
 <template>
 <body class="dark-edition">
       <div class="wrapper ">
-          <div class="sidebar" data-color="purple" data-background-color="black">
+          <div class="sidebar" data-color="azure" data-background-color="black">
           <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
  
@@ -10,21 +10,21 @@
           -->
               <div class="logo">
                   <a href="#" class="simple-text logo-normal">
-                    LOGO 
+                      LOGO
                   </a>
               </div>
               <div class="sidebar-wrapper">
                   <ul class="nav">
 <!--sidebar here -->
-                  <li class="nav-item" @click="selected = 1" :class="{active:selected == 1}">
-                     <router-link to="/" class="nav-link">
+                  <li class="nav-item"  @click="selected = 1" :class="{active:selected == 1}"> 
+                     <router-link to="/" class="nav-link" >
                         <i class=" fa fa-home"></i>
                         <p>Home</p>
                       </router-link>
                   </li>
                  
                   <li class="nav-item " @click="selected = 2" :class="{active:selected == 2}">
-                     <router-link to="/topsongs" class="nav-link">
+                     <router-link to="/topsongs" class="nav-link" >
                       <i class="fa fa-line-chart"></i>
                       <p>Topsongs</p>
                      </router-link>
@@ -57,7 +57,7 @@
                         <p>Playlist</p> 
                       </router-link>
                   </li>
-
+ 
                   <li class="nav-item" @click="selected = 7" :class="{active:selected == 7}">
                     <router-link to="/feedback" class="nav-link">    
                         <i class="fa fa-question"></i>
@@ -79,8 +79,8 @@
                   <div class="form__group field">
                       <input type="input" class="form__field " placeholder="Search" name="search" id='search' required />
                       <label for="name" class="form__label">Search</label>
-                  </div>
                 </div>
+              </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="navbar-toggler-icon icon-bar"></span>
@@ -109,20 +109,20 @@
             <!-- your content here -->
             <router-view></router-view>
           </div>
-         
-          </div>
-          <footer class="footer">
-            <div class="container-fluid">
-              <nav class="float-left">
-                footer
-              </nav>
-              <div class="copyright float-right" >
-                Footer
-              </div>
+        </div>
+  <!-- Footer -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <nav class="float-left">
+              footer
+            </nav>
+            <div class="copyright float-right" >
+              Footer
             </div>
-          </footer>
-          </div>         
-      </div>
+          </div>
+        </footer>
+      </div>      
+    </div>
   </body>
 </template>
 
@@ -164,5 +164,3 @@ export default {
   }
 }
 </script>
-
-
