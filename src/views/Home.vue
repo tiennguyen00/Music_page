@@ -87,9 +87,9 @@ export default {
           this.selected++;
       }, 10000)
 
-      setInterval(()=>{   
-        document.getElementsByClassName("able")[0].click();
-      }, 10000)
+      // setInterval(()=>{   
+      //   document.getElementsByClassName("able")[0].click();
+      // }, 10000)
     }
   },
   computed: {
