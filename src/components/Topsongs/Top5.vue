@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper" @mouseenter="updateChart">
         <div class="img">
             <img style="width: 50px;" :src="image" alt="#">
         </div>
@@ -20,6 +20,11 @@ export default {
         name_song: String,
         name_performer: String,
         image: String
+    },
+    methods: {
+        updateChart(){
+            this.$emit('updateChart', this.id);
+        }
     }
 }
 </script>
@@ -33,9 +38,14 @@ export default {
         background-color: #1d1d1d;
         padding: 7px;
     }
+    .wrapper:hover{
+        background-color: #047786;
+    }
+   
     .img{
         flex-grow: 0;
         margin-right: 5px;
+        position: relative;
     }
     .name{
         flex-grow: 1;
@@ -53,7 +63,7 @@ export default {
         color: rgba(255, 255, 255, 0.7);
     }
      .name_performer{
-        color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.4);
         font-size: 75%;
     }
 
