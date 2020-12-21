@@ -115,12 +115,18 @@
           <div class="container-fluid">
             <nav class="float-left">
               footer
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
             </nav>
             <div class="copyright float-right" >
               Footer
             </div>
           </div>
         </footer>
+    
       </div>      
     </div>
   </body>
@@ -155,13 +161,30 @@
 
 <script>
 // import * as a from 'link';    nhúng file tự code js ở đây.
+import MusicPlayer from '@/components/MusicPlayer.vue';
+
+
 export default {
   data(){
     return {
-      selected: 1 // Biến này dùng để chỉnh sửa câc link nào được chọn
+      selected: 1, // Biến này dùng để chỉnh sửa câc link nào được chọn
+      //===================Các biến bên dưới dùng để nhận thông tin yêu cầu phát nhạc từ các cpnent trong views ========//
+      name_song: '',
+      name_performer: '',
+      mp3: '' 
     }
   },
   methods: {
+    // playIt(name_song, name_performer, mp3){
+    //   this.name_song = name_song;
+    //   this.name_performer = name_performer;
+    //   this.mp3 = mp3;
+    //   console.log("hi");
+    //   console.log(this.name_song, this.name_performer, this.mp3);
+    //}
+  },
+  components: {
+    MusicPlayer,
   }
 }
 </script>

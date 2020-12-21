@@ -25,13 +25,11 @@
     <div class="container">
       <h3 class="title">Trending Now</h3>
       <div class="recently_listened">
-        <a href="#" v-for="variable in TrendingNow" :key="variable.id">
-          <TrendingNow
+          <TrendingNow  v-for="variable in TrendingNow" :key="variable.id" style="cursor: pointer;"
           :name_song = "variable.name_song"
           :name_performer = "variable.name_performer"
           :image = "variable.image"
         />
-        </a>
       </div>
       <div style="position: relative; text-align: center; padding-top: 20px;">
         <img style="width: 150px;" src="@/assets/image/Home/tonton_dance.gif" alt="#">
@@ -88,7 +86,7 @@ export default {
       }, 10000)
 
       // setInterval(()=>{   
-      //   document.getElementsByClassName("able")[0].click();
+      //  document.getElementsByClassName("able")[0].click();
       // }, 10000)
     }
   },

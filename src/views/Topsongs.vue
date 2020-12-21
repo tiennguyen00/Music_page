@@ -1,4 +1,5 @@
 <template>
+    <div class="Topsongs">
         <div class="row">
             <div class="col-xl-8">
                 <h3 style="margin: 0; text-align: center; font-weight: 700; color: rgba(255, 255, 255, 0.7);">
@@ -59,40 +60,89 @@
 
             <div class="col-xl-4">
                 <a style="display: block; text-align: right; color:#DDD; cursor: pointer; right: 0; margin-top: 10px; font-weight: 400">SEE ALL</a>
-                <a href="#" v-for="variable in Top5" :key="variable.id">
-                <Top5 @updateChart="id = $event"
+                <Top5 v-for="variable in Top5" :key="variable.id" style="cursor: pointer;"
+                    @updateChart="id = $event" 
+                    @playIt = playIt
                     :id = variable.id
                     :name_song = variable.name_song
                     :name_performer = variable.name_performer
                     :image = variable.image
+                    :mp3 = variable.mp3
                 />
-               </a>
             </div>
         </div>
+
+        <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
+            <h3 class="title">Top Playlist</h3>
+            <div style="display: flex; margin-top: 15px;">
+                <a href="#" v-for="variable in Album" :key="variable.id">
+                <RecommendedAlbum
+                    :name_albums = "variable.name_albums"
+                    :name_singer = "variable.name_singer"
+                    :image = "variable.image"
+                />
+                </a>
+                <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
+            </div>
+        </div>
+
+        <div class="row" style="padding-left: 1rem;">
+            <h3 class="title">Top Album</h3>
+            <div style="display: flex; margin-top: 15px;">
+                <a href="#" v-for="variable in Album" :key="variable.id">
+                <RecommendedAlbum
+                    :name_albums = "variable.name_albums"
+                    :name_singer = "variable.name_singer"
+                    :image = "variable.image"
+                />
+                </a>
+                <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
+            </div>
+        </div>
+
+        <MusicPlayer
+        id = "play"
+        :name_song = "name_song"
+        :name_performer = "name_performer"
+        :mp3 = "mp3"
+ 
+        />
+    </div>
 </template>
 
 <script>
 import Top5 from '@/components/Topsongs/Top5.vue'; 
 import Chart from '@/components/Topsongs/Chart.vue';
+import RecommendedAlbum from '@/components/Home/RAlbums.vue';
+import MusicPlayer from '@/components/MusicPlayer.vue';
 
 import {mapState} from "vuex";
 
 export default {
     data(){
         return{
-            id: 1
+            id: 1,
+            name_song: '',
+            name_performer: '',
+            mp3: '',
+
         }
     }, 
     components: {
         Top5,
-        Chart
+        Chart,
+        RecommendedAlbum,
+        MusicPlayer
     },
     computed: {
-        ...mapState(['Top5', 'Chart'])
+        ...mapState(['Top5', 'Chart', 'Album'])
     },
     methods: {
-        updateChart(){
-
+        playIt(name_song, name_performer, mp3){
+            this.name_song = name_song;
+            this.name_performer = name_performer;
+            this.mp3 = mp3; 
+            // reset
         }
     }
     
@@ -114,5 +164,12 @@ export default {
     }
     .ct-chart{
         height: 100%;
+    }
+    .title{
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 400;
+        font-size: 1.3rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
     }
 </style>

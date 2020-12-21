@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" @mouseenter="updateChart">
+    <div class="wrapper" @mouseenter="updateChart" @click="playIt">
         <div class="img">
             <img style="width: 50px;" :src="image" alt="#">
         </div>
@@ -11,6 +11,7 @@
             <i class=" fa fa-plus"></i>
             <i class=" fa fa-ellipsis-v"></i>
         </div>
+    
     </div>
 </template>
 <script>
@@ -19,11 +20,15 @@ export default {
         id: Number,
         name_song: String,
         name_performer: String,
-        image: String
+        image: String,
+        mp3: String
     },
     methods: {
         updateChart(){
             this.$emit('updateChart', this.id);
+        },
+        playIt(){
+            this.$emit('playIt', this.name_song, this.name_performer, this.mp3);
         }
     }
 }
