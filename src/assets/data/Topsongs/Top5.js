@@ -4,7 +4,7 @@ export default[
         image: require(`@/assets/image/Topsong/safe_and_song.jpg`),
         name_song: 'Safe and sound',
         name_performer: 'Taylor Swift',
-        mp3: 'https://data00.chiasenhac.com/downloads/1848/1/1847624-e3bfedf1/128/So%20Far%20Away%20-%20Martin%20Garrix_%20David%20Guett.mp3'
+        mp3: 'https://data01.chiasenhac.com/downloads/1739/1/1738270-3ad9a3ad/128/Demons%20-%20Imagine%20Dragon.mp3'
     },
     {
         id: 2,
@@ -32,6 +32,6 @@ export default[
         image: require(`@/assets/image/Topsong/classic.jpg`),
         name_song: 'Classic',
         name_performer: 'MKTO',
-        mp3: 'https://nl06.mp3offline.org/a2d93f745b6dbc44181f2/MKTO%20-%20Classic.mp3'
+        mp3: 'https://data.mymp3app.com/128/mkto-classic.mp3'
     }
 ]

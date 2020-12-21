@@ -1,11 +1,11 @@
 <template>
     <div class="wrapper" @mouseenter="updateChart" @click="playIt">
         <div class="img">
-            <img style="width: 50px;" :src="image" alt="#">
+            <img style="width: 50px;" :src="payLoad.image" alt="#">
         </div>
         <div class="name">
-            <div class="name_song">{{id}}. {{name_song}}</div>
-            <em class="name_performer">{{name_performer}}</em>
+            <div class="name_song">{{payLoad.id}}. {{payLoad.name_song}}</div>
+            <em class="name_performer">{{payLoad.name_performer}}</em>
         </div>
         <div class="option">
             <i class=" fa fa-plus"></i>
@@ -17,18 +17,16 @@
 <script>
 export default {
     props: {
-        id: Number,
-        name_song: String,
-        name_performer: String,
-        image: String,
-        mp3: String
+        payLoad: {
+            type: Object
+        }
     },
     methods: {
         updateChart(){
-            this.$emit('updateChart', this.id);
+            this.$emit('updateChart', this.payLoad.id);
         },
         playIt(){
-            this.$emit('playIt', this.name_song, this.name_performer, this.mp3);
+            this.$emit('playIt', this.payLoad);
         }
     }
 }

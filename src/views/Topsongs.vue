@@ -63,11 +63,13 @@
                 <Top5 v-for="variable in Top5" :key="variable.id" style="cursor: pointer;"
                     @updateChart="id = $event" 
                     @playIt = playIt
-                    :id = variable.id
-                    :name_song = variable.name_song
-                    :name_performer = variable.name_performer
-                    :image = variable.image
-                    :mp3 = variable.mp3
+                    :payLoad = "{
+                        id: variable.id,
+                        name_song: variable.name_song,
+                        name_performer: variable.name_performer,
+                        image: variable.image,
+                        mp3: variable.mp3,
+                    }"
                 />
             </div>
         </div>
@@ -101,11 +103,12 @@
         </div>
 
         <MusicPlayer
-        id = "play"
-        :name_song = "name_song"
-        :name_performer = "name_performer"
-        :mp3 = "mp3"
- 
+        :newSong = "{
+            name_song: this.name_song,
+            name_performer: this.name_performer,
+            image: this.image,
+            mp3: this.mp3,
+        }"
         />
     </div>
 </template>
@@ -124,8 +127,8 @@ export default {
             id: 1,
             name_song: '',
             name_performer: '',
+            image: '',
             mp3: '',
-
         }
     }, 
     components: {
@@ -138,11 +141,12 @@ export default {
         ...mapState(['Top5', 'Chart', 'Album'])
     },
     methods: {
-        playIt(name_song, name_performer, mp3){
-            this.name_song = name_song;
-            this.name_performer = name_performer;
-            this.mp3 = mp3; 
-            // reset
+        playIt(payLoad){
+            this.name_song = payLoad.name_song;
+            this.name_performer = payLoad.name_performer;
+            this.mp3 = payLoad.mp3; 
+            this.image = payLoad.image;
+          
         }
     }
     

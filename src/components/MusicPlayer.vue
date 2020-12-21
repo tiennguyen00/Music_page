@@ -6,15 +6,15 @@
                 </div> {{b}}
         </div>
         <div class="name_song">
-            <div id="a">{{name_song}}</div>
-            <div id="b">{{name_performer}}</div>
+            <div id="a">{{newSong.name_song}}</div>
+            <div id="b">{{newSong.name_performer}}</div>
         </div> 
         <div class="icon">
             <i class="fa fa-bars"></i>
            <div class="icon_control">
                 <i class="fa fa-volume-up"></i>
                 <i class="fa fa-backward"></i>
-                <i id="test" v-if="!isPlay" @click="btn_play" class="fa fa-play"></i>
+                <i id="btn-play" v-if="!isPlay" @click="btn_play" class="fa fa-play"></i>
                 <i v-else @click="btn_play" class="fa fa-pause"></i>
                 <i class="fa fa-forward"></i>
                 <i class="fa fa-usb"></i>
@@ -24,17 +24,16 @@
             <i v-if="isLove" @click="love" class="fa fa-heart-o"></i>
             <i v-else @click="love" class="fa fa-heart"></i>
         </div>
-        <audio id="audio" :src="mp3" type="audio/mpeg"></audio>
+        <audio id="audio" :src="newSong.mp3" type="audio/mpeg"></audio>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        name_song: String,
-        name_performer: String,
-        mp3: String,
-
+        newSong: {
+            type: Object 
+        }
     },
     data(){
         return{
@@ -45,11 +44,47 @@ export default {
             livetime: 0, //Dạng số của a
             b: "", // Biến này thể hiện thời gian của bài hát
             timeduration: 0, //Dạng số của b ,
+
+            listPlay: [], //Danh sách các bài hát đang trong hàng chờ,
+            id: 0 //Số lượng bài hát hiện tại trong hàng chờ (listPlay).
+
         }
     },
     mounted(){
         var audio = document.getElementById("audio");
+
+        // thiết lập giá trị mặc định cho listPlay. giá trị này là giá trị rỗng
+        this.listPlay.push(this.newSong);
+        
     },
+    watch: {
+        newSong: function(newSong){
+            var flag = 1;
+            if(this.listPlay[0].name_song == newSong.name_song)
+                flag = 0;
+            if (flag){
+                var btnPlay = document.getElementById("btn-play");
+                this.listPlay.shift();
+                this.listPlay.push(newSong); 
+          
+                // Thiết lập lại giá trị ban đầu của livetime, a -> khi nó vừa chuyển sang bài mới
+                this.livetime = 0;
+                this.a = '';
+
+            if (audio.play() !== undefined) {
+                audio.play().then(function() {
+                    audio.play();
+                    btnPlay.click();
+                    
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }
+                
+            }
+        },
+    },
+    
     methods: {
         time_hh_mm(seconds) {
             const h = Math.floor(seconds / 3600);
@@ -62,7 +97,6 @@ export default {
 
         love() {
             this.isLove = !this.isLove;
-            // console.log("Giá trị:", this.$props.resetMusicPlayer);
         },
 
         btn_play() {
@@ -86,21 +120,26 @@ export default {
             var method = this.isPlay ? "play" : "pause";
             audio[method]();
             return false;
-
         }
+       
     },
     
     beforeUpdate() {
-
         if (this.livetime >= this.timeduration) {
             clearInterval(this.x);
             this.isPlay = false;
             this.a = ""; //Biến này để thời gian hiển thị lên dạng chuỗi
             this.livetime = 0;
-            this.reset = false;
         }
         var caculator = (this.livetime/this.timeduration)*100;
         document.getElementById("seek-bar").style.width = caculator + "%";
+        
+    },
+    updated(){
+        // Thiết lập lại giá trị ban đầu của timeduration, b -> khi nó vừa chuyển sang bài mới
+        this.timeduration = audio.duration;
+        this.b = this.time_hh_mm(audio.duration);
+      
     }
 }
 </script>
