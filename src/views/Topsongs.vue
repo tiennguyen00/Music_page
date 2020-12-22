@@ -1,5 +1,6 @@
 <template>
     <div class="Topsongs">
+        <!-- Biểu đồ -->
         <div class="row">
             <div class="col-xl-8">
                 <h3 style="margin: 0; text-align: center; font-weight: 700; color: rgba(255, 255, 255, 0.7);">
@@ -73,7 +74,7 @@
                 />
             </div>
         </div>
-
+        <!-- TopPlaylist -->
         <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
             <h3 class="title">Top Playlist</h3>
             <div style="display: flex; margin-top: 15px;">
@@ -87,8 +88,8 @@
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
-
-        <div class="row" style="padding-left: 1rem;">
+        <!-- TopAlbum -->
+        <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
             <h3 class="title">Top Album</h3>
             <div style="display: flex; margin-top: 15px;">
                 <a href="#" v-for="variable in Album" :key="variable.id">
@@ -101,7 +102,50 @@
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
+        <!-- TopUsUk -->
+        <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
+            <h3 class="title">Top US-UK</h3>
+            <div style="display: flex; margin-top: 15px;">
+                <a href="#" v-for="variable in TopUsUk" :key="variable.id">
+                <RecommendedAlbum
+                    :name_albums = "variable.name_song"
+                    :name_singer = "variable.name_performer"
+                    :image = "variable.image"
+                />
+                </a>
+                <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
+            </div>
+        </div>
+        <!-- TopVietNam -->
+        <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
+            <h3 class="title">Top VietNam</h3>
+            <div style="display: flex; margin-top: 15px;">
+                <a href="#" v-for="variable in TopVietNam" :key="variable.id">
+                <RecommendedAlbum
+                    :name_albums = "variable.name_song"
+                    :name_singer = "variable.name_performer"
+                    :image = "variable.image"
+                />
+                </a>
+                <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
+            </div>
+        </div>
+        <!-- TopCpop -->
+        <div class="row" style="padding-left: 1rem;">
+            <h3 class="title">Top C-Pop</h3>
+            <div style="display: flex; margin-top: 15px;">
+                <a href="#" v-for="variable in TopCpop" :key="variable.id">
+                <RecommendedAlbum
+                    :name_albums = "variable.name_song"
+                    :name_singer = "variable.name_performer"
+                    :image = "variable.image"
+                />
+                </a>
+                <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
+            </div>
+        </div>
 
+        <!-- Trình phát nhạc -->
         <MusicPlayer
         :newSong = "{
             name_song: this.name_song,
@@ -138,7 +182,7 @@ export default {
         MusicPlayer
     },
     computed: {
-        ...mapState(['Top5', 'Chart', 'Album'])
+        ...mapState(['Top5', 'Chart', 'Album', 'TopUsUk', 'TopVietNam', 'TopCpop'])
     },
     methods: {
         playIt(payLoad){

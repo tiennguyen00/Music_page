@@ -5,10 +5,12 @@
                     <div id="seek-bar"></div>
                 </div> {{b}}
         </div>
+
         <div class="name_song">
             <div id="a">{{newSong.name_song}}</div>
             <div id="b">{{newSong.name_performer}}</div>
         </div> 
+
         <div class="icon">
             <i class="fa fa-bars"></i>
            <div class="icon_control">
@@ -19,11 +21,10 @@
                 <i class="fa fa-forward"></i>
                 <i class="fa fa-usb"></i>
            </div>
-            
-            
             <i v-if="isLove" @click="love" class="fa fa-heart-o"></i>
             <i v-else @click="love" class="fa fa-heart"></i>
         </div>
+
         <audio id="audio" :src="newSong.mp3" type="audio/mpeg"></audio>
     </div>
 </template>
@@ -161,6 +162,7 @@ export default {
     .music_play:hover{
         transform: translate(-30px,0%);
     }
+
     .icon{
         width: 40%;
         margin: 0 auto 1rem;
@@ -168,7 +170,6 @@ export default {
         justify-content: space-between;
         color: azure;
     }
-   
     .icon_control .fa-volume-up, .fa-usb{
         margin: 0.5rem 1rem 1rem;
     }
@@ -183,6 +184,8 @@ export default {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
     }
+
+    /* #a, #b là tên bài hát, tên người biển diễn */
     #a{
         color:  aqua;
         letter-spacing: 3px;
@@ -193,6 +196,8 @@ export default {
         color: rgb(173, 169, 169);
         font-size: 80%;
     }
+
+    /* Thanh thời gian  */
     #s-area{
         display: inline-block;
         width: 20rem;  /* Độ dài của thanh phát nhạc */
