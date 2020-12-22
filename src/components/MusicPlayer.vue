@@ -153,7 +153,7 @@ export default {
         background-color: #000000;
         color: aliceblue;
         z-index: 999;
-        width: 83%;
+        width: 102%;
         border-top: 2px solid #1da4b6;
         transform: translate(-30px, 60px); /* Trừ 30 là để lùi vào trái 15+15px, do đag ở trong contain-fuild */
         margin-top: 0.5rem;
@@ -161,6 +161,7 @@ export default {
     }
     .music_play:hover{
         transform: translate(-30px,0%);
+        position: fixed;
     }
 
     .icon{

@@ -63,7 +63,6 @@
                 <a style="display: block; text-align: right; color:#DDD; cursor: pointer; right: 0; margin-top: 10px; font-weight: 400">SEE ALL</a>
                 <Top5 v-for="variable in Top5" :key="variable.id" style="cursor: pointer;"
                     @updateChart="id = $event" 
-                    @playIt = playIt
                     :payLoad = "{
                         id: variable.id,
                         name_song: variable.name_song,
@@ -78,13 +77,13 @@
         <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
             <h3 class="title">Top Playlist</h3>
             <div style="display: flex; margin-top: 15px;">
-                <a href="#" v-for="variable in Album" :key="variable.id">
-                <RecommendedAlbum
-                    :name_albums = "variable.name_albums"
-                    :name_singer = "variable.name_singer"
+                <RecommendedAlbum  v-for="variable in Album" :key="variable.id"
+                    :name_song = "variable.name_albums"
+                    :name_performer = "variable.name_singer"
                     :image = "variable.image"
+                    :mp3 = "variable.mp3"
+
                 />
-                </a>
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
@@ -92,13 +91,12 @@
         <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
             <h3 class="title">Top Album</h3>
             <div style="display: flex; margin-top: 15px;">
-                <a href="#" v-for="variable in Album" :key="variable.id">
-                <RecommendedAlbum
-                    :name_albums = "variable.name_albums"
-                    :name_singer = "variable.name_singer"
+                <RecommendedAlbum v-for="variable in Album" :key="variable.id"
+                    :name_song = "variable.name_albums"
+                    :name_performer = "variable.name_singer"
                     :image = "variable.image"
+                    :mp3 = "variable.mp3"
                 />
-                </a>
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
@@ -106,13 +104,12 @@
         <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
             <h3 class="title">Top US-UK</h3>
             <div style="display: flex; margin-top: 15px;">
-                <a href="#" v-for="variable in TopUsUk" :key="variable.id">
-                <RecommendedAlbum
-                    :name_albums = "variable.name_song"
-                    :name_singer = "variable.name_performer"
+                <RecommendedAlbum  v-for="variable in TopUsUk" :key="variable.id"
+                    :name_song = "variable.name_song"
+                    :name_performer = "variable.name_performer"
                     :image = "variable.image"
+                    :mp3 = "variable.mp3"
                 />
-                </a>
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
@@ -120,40 +117,28 @@
         <div class="row" style="padding-left: 1rem; margin-bottom: 3rem;">
             <h3 class="title">Top VietNam</h3>
             <div style="display: flex; margin-top: 15px;">
-                <a href="#" v-for="variable in TopVietNam" :key="variable.id">
-                <RecommendedAlbum
-                    :name_albums = "variable.name_song"
-                    :name_singer = "variable.name_performer"
+                <RecommendedAlbum v-for="variable in TopVietNam" :key="variable.id"
+                    :name_song = "variable.name_song"
+                    :name_performer = "variable.name_performer"
                     :image = "variable.image"
+                    :mp3 = "variable.mp3"
                 />
-                </a>
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
         <!-- TopCpop -->
-        <div class="row" style="padding-left: 1rem;">
+        <div class="row" style="padding-left: 1rem;">   
             <h3 class="title">Top C-Pop</h3>
             <div style="display: flex; margin-top: 15px;">
-                <a href="#" v-for="variable in TopCpop" :key="variable.id">
-                <RecommendedAlbum
-                    :name_albums = "variable.name_song"
-                    :name_singer = "variable.name_performer"
+                <RecommendedAlbum v-for="variable in TopCpop" :key="variable.id"
+                    :name_song = "variable.name_song"
+                    :name_performer = "variable.name_performer"
                     :image = "variable.image"
+                    :mp3 = "variable.mp3"
                 />
-                </a>
                 <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
             </div>
         </div>
-
-        <!-- Trình phát nhạc -->
-        <MusicPlayer
-        :newSong = "{
-            name_song: this.name_song,
-            name_performer: this.name_performer,
-            image: this.image,
-            mp3: this.mp3,
-        }"
-        />
     </div>
 </template>
 
@@ -183,15 +168,6 @@ export default {
     },
     computed: {
         ...mapState(['Top5', 'Chart', 'Album', 'TopUsUk', 'TopVietNam', 'TopCpop'])
-    },
-    methods: {
-        playIt(payLoad){
-            this.name_song = payLoad.name_song;
-            this.name_performer = payLoad.name_performer;
-            this.mp3 = payLoad.mp3; 
-            this.image = payLoad.image;
-          
-        }
     }
     
 }

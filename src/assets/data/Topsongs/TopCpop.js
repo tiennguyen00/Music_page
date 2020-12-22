@@ -8,8 +8,8 @@ export default [
         },
         {
             id: 2,
-            name_song: "Người theo đuổi ánh sáng",
-            name_performer: "Từ Vi",
+            name_song: "Thiếu niên",
+            name_performer: "Mộng Nhiên",
             image:require(`@/assets/image/Topsong/người_theo_đuổi_ánh_sáng.jpg`),
             mp3: ''
         },
@@ -30,7 +30,7 @@ export default [
         {
             id: 5,
             name_song: "Xuất sơn",
-            name_performer: "Hoa Chúc, Vương Nam Thắng",
+            name_performer: "Hoa Chúc",
             image:require(`@/assets/image/Topsong/xuất_sơn.jpg`),
             mp3: ''
         },

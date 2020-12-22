@@ -129,6 +129,16 @@
     
       </div>      
     </div>
+    
+   
+    <!-- Trình phát nhạc  -->
+    <MusicPlayer
+    :newSong = "{
+            name_song: this.name_song,
+            name_performer: this.name_performer,
+            image: this.image,
+            mp3: this.mp3,
+        }"/>
   </body>
 </template>
 
@@ -161,8 +171,7 @@
 
 <script>
 // import * as a from 'link';    nhúng file tự code js ở đây.
-import MusicPlayer from '@/components/MusicPlayer.vue';
-
+import EventBus from '@/store/eventBus.js';
 
 export default {
   data(){
@@ -171,20 +180,20 @@ export default {
       //===================Các biến bên dưới dùng để nhận thông tin yêu cầu phát nhạc từ các cpnent trong views ========//
       name_song: '',
       name_performer: '',
-      mp3: '' 
+      image: '',
+      mp3: ''
     }
   },
-  methods: {
-    // playIt(name_song, name_performer, mp3){
-    //   this.name_song = name_song;
-    //   this.name_performer = name_performer;
-    //   this.mp3 = mp3;
-    //   console.log("hi");
-    //   console.log(this.name_song, this.name_performer, this.mp3);
-    //}
-  },
-  components: {
-    MusicPlayer,
+  mounted(){
+    //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo
+    this.mp3 = 'https://c1-ex-swe.nixcdn.com/NhacCuaTui913/JingleBellsNhacChuong-CrazyFrog-4273417.mp3?st=5G5fq57LnH0-0EGt0RVOtg&e=1608721009&download=true';
+    // Băt sự kiện trên EventBus
+    EventBus.$on('playIt', payLoad => {
+      this.name_song = payLoad.name_song;
+      this.name_performer = payLoad.name_performer;
+      this.image = payLoad.image;
+      this.mp3 = payLoad.mp3;
+    })
   }
 }
 </script>

@@ -39,17 +39,16 @@
     <div class="recommended_album">
       <h3 class="title">Recommended Albums</h3>
       <div style="display: flex; margin-top: 15px;">
-        <a href="#" v-for="variable in Album" :key="variable.id">
-          <RecommendedAlbum
-            :name_albums = "variable.name_albums"
-            :name_singer = "variable.name_singer"
+          <RecommendedAlbum v-for="variable in Album" :key="variable.id"
+            :name_song = "variable.name_albums"
+            :name_performer = "variable.name_singer"
             :image = "variable.image"
           />
-        </a>
         <strong class="more_album"><i class="fa fa-chevron-circle-right fa-3x" style="color: azure; transform: translateY(3rem); "></i></strong>
       </div>
     </div>
 
+    
   </div>
 </template>
 
@@ -57,6 +56,7 @@
 import TrendingNow from "@/components/Home/TrendingNow.vue";
 import RecommendedAlbum from "@/components/Home/RAlbums.vue";
 import FeatureForU from "@/components/Home/Feature.vue";
+
 
 import {mapState} from "vuex";
 export default {

@@ -1,12 +1,12 @@
 <template>
-    <div class="wrap">
+    <div class="wrap" @click = "playIt">
             <img :src="image" class="image" alt="#">
             <img :src="image" class="image_shadow" alt="#">
             <div class="c-review"><i class="fa fa-4x fa-play-circle-o"></i></div>
         
         <div class="name">
-            <div class="name_album">{{name_albums}}</div>
-            <div class="detail_album">{{name_singer}}</div>
+            <div class="name_album">{{name_song}}</div>
+            <div class="detail_album">{{name_performer}}</div>
         </div>
     </div>
 </template>
@@ -17,6 +17,7 @@
         margin-right: 40px;
         display: flex;
         flex-direction: column;
+        /* overflow: hidden; */
     }
     .image, .image_shadow{  
         width: 150px;
@@ -60,6 +61,7 @@
         transition: 0.3s all;
         border-radius: 10px;
         z-index: 2;
+        color: white;
     }
 
     .fa-play-circle-o{
@@ -83,12 +85,25 @@
 </style>
 
 <script>
+import EventBus from '@/store/eventBus.js';
 export default {
     props: {
         id: Number,
-        name_albums: String,
+        name_song: String,
         image: String,
-        name_singer:  String
+        name_performer:  String,
+        mp3: String
+    },
+    methods: {
+        playIt(){
+            var payLoad = {
+                name_song: this.name_song,
+                name_performer: this.name_performer,
+                image: this.image,
+                mp3: this.mp3
+            }
+            EventBus.$emit('playIt', payLoad);
+        }
     }
 }
 </script>

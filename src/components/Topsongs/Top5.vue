@@ -15,6 +15,7 @@
     </div>
 </template>
 <script>
+import EventBus from '@/store/eventBus.js';
 export default {
     props: {
         payLoad: {
@@ -26,7 +27,7 @@ export default {
             this.$emit('updateChart', this.payLoad.id);
         },
         playIt(){
-            this.$emit('playIt', this.payLoad);
+            EventBus.$emit('playIt', this.payLoad);
         }
     }
 }

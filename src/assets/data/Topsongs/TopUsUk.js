@@ -29,7 +29,7 @@ export default[
     }, 
     {
         id: 5,
-        name_song: "bad liar",
+        name_song: "Bad liar",
         name_performer: "Imagine Dragons",
         image: require(`@/assets/image/Topsong/bad_liar.jpg`),
         mp3: "https://c1-ex-swe.nixcdn.com/Unv_Audio120/BadLiar-ImagineDragons-5739340.mp3?st=JkOMwovf3A5C_WoQR4W2mQ&e=1608518980"
