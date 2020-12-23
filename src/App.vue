@@ -37,33 +37,21 @@
                       </router-link>
                   </li>
 
-                  <li class="nav-item" @click="selected = 4" :class="{active:selected == 4}">
-                    <router-link to="/events" class="nav-link">
-                      <i class="fa fa-music"></i>
-                      <p>Events</p>                
-                    </router-link>
-                  </li>
 
-                  <li class="nav-item" @click="selected = 5" :class="{active:selected == 5}">
+                  <li class="nav-item" @click="selected = 4" :class="{active:selected == 4}">
                       <router-link to="/performer" class="nav-link">
                         <i class="fa fa-user-o"></i>
                         <p>Perfomer</p>
                       </router-link>
                   </li>
 
-                  <li class="nav-item" @click="selected = 6" :class="{active:selected == 6}">
+                  <li class="nav-item" @click="selected = 5" :class="{active:selected == 5}">
                       <router-link to="/playlist" class="nav-link">
                         <i class="fa fa-tasks"></i>
                         <p>Playlist</p> 
                       </router-link>
                   </li>
  
-                  <li class="nav-item" @click="selected = 7" :class="{active:selected == 7}">
-                    <router-link to="/feedback" class="nav-link">    
-                        <i class="fa fa-question"></i>
-                        <p>Feedback</p>
-                    </router-link>    
-                  </li> 
 
                   </ul>
               </div>
@@ -89,6 +77,18 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end">
                   <ul class="navbar-nav">
+                     <li class="nav-item">
+                      <a class="nav-link" href="javascript:void(0)">
+                        Singin
+                      </a>
+                    </li>
+
+                     <li class="nav-item">
+                      <a class="nav-link" href="javascript:void(0)">
+                        Singup
+                      </a>
+                    </li>
+                    
                     <li class="nav-item">
                       <a class="nav-link" href="javascript:void(0)">
                         <i class="material-icons">notifications</i>
@@ -97,7 +97,7 @@
                         </p>
                       </a>
                     </li>
-                    
+
                     <!-- your navbar here (left) -->
                   </ul>
                 </div>
