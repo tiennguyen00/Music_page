@@ -5,7 +5,7 @@
           <div class="sidebar" data-color="azure" data-background-color="black">
           <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
+ 
           Tip 2: you can also add an image using data-image tag
           -->
               <div class="logo">
@@ -74,13 +74,13 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
               <div class="container-fluid">
                 <div class="navbar-wrapper col-sm-5">
-                  <!-- <a class="navbar-brand" href="#"></a> -->
-                  <i id="icon" class="fa fa-search"></i>
-                  <div class="form__group field">
-                      <input type="input" class="form__field " placeholder="Search" name="search" id='search' required />
-                      <label for="name" class="form__label">Search</label>
+                    <!-- <a class="navbar-brand" href="#"></a> -->
+                    <i id="icon" class="fa fa-search"></i>
+                    <div class="form__group field">
+                        <input type="input" class="form__field" placeholder="Search" name="search" id='search' required />
+                        <label for="name" class="form__label">Search</label>
+                    </div>
                 </div>
-              </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="navbar-toggler-icon icon-bar"></span>
@@ -105,11 +105,11 @@
             </nav>
             <!-- End Navbar -->
           <div class="content">
-          <div class="container-fluid">
-            <!-- your content here -->
-            <router-view></router-view>
+            <div class="container-fluid">
+              <!-- your content here -->
+              <router-view></router-view>
+            </div>
           </div>
-        </div>
   <!-- Footer -->
         <footer class="footer">
           <div class="container-fluid">
@@ -146,7 +146,6 @@
  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons');
  @import url('https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css');
 </style>
-
 
 <style scoped>
 /* css tự code ở đây */
