@@ -7,6 +7,9 @@ import Events from "../views/Events.vue";
 import Performer from "../views/Performer.vue";
 import Playlist from "../views/Playlist.vue";
 import Feedback from "../views/Feedback.vue";
+import index from "../components/Genres/index.vue";
+import topic from "../components/Genres/topic.vue";
+import mood from "../components/Genres/mood.vue";
 
 Vue.use(VueRouter)
 
@@ -24,7 +27,12 @@ const routes = [
   {
     path: "/genres",
     name: "Genres",
-    component: Genres
+    component: Genres,
+    children: [
+      {path: "", name: 'genre', component: index},
+      {path: "topic", name: 'topic', component: topic},
+      {path: "mood", name: 'mood', component: mood}
+    ]
   },
   {
     path: "/events",
