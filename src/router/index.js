@@ -7,9 +7,15 @@ import Events from "../views/Events.vue";
 import Performer from "../views/Performer.vue";
 import Playlist from "../views/Playlist.vue";
 import Feedback from "../views/Feedback.vue";
+
 import index from "../components/Genres/index.vue";
 import topic from "../components/Genres/topic.vue";
 import mood from "../components/Genres/mood.vue";
+
+import UsUk from "../components/Performer/UsUk.vue";
+import VietNam from "../components/Performer/VietNam.vue";
+import Cpop from "../components/Performer/Cpop.vue";
+
 
 Vue.use(VueRouter)
 
@@ -35,24 +41,19 @@ const routes = [
     ]
   },
   {
-    path: "/events",
-    name: "Events",
-    component: Events
-  },
-  {
     path: "/performer",
     name: "Performer",
-    component: Performer
+    component: Performer,
+    children: [
+      {path: "", name: 'UsUk', component: UsUk},
+      {path: "VietNam", name: 'VietNam', component: VietNam},
+      {path: "Cpop", name: 'Cpop', component: Cpop},
+    ]
   },
   {
     path: "/playlist",
     name: "Playlist",
     component: Playlist
-  },
-  {
-    path: "/feedback",
-    name: "Feedback",
-    component: Feedback
   }
 ]
 

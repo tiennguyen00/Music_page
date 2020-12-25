@@ -63,9 +63,9 @@
               <div class="container-fluid">
                 <div class="navbar-wrapper col-sm-5">
                     <!-- <a class="navbar-brand" href="#"></a> -->
-                    <i id="icon" class="fa fa-search"></i>
+                    <i @click = "handleSearch()" id="icon" class="fa fa-search"></i>
                     <div class="form__group field">
-                        <input type="input" class="form__field" placeholder="Search" name="search" id='search' required />
+                        <input type="input" class="form__field" placeholder="Search" name="search" id='search' @keyup.enter = "handleSearch()" />
                         <label for="name" class="form__label">Search</label>
                     </div>
                 </div>
@@ -171,6 +171,7 @@
 <script>
 // import * as a from 'link';    nhúng file tự code js ở đây.
 import EventBus from '@/store/eventBus.js';
+import {mapState, mapActions} from 'vuex'; 
 
 export default {
   data(){
@@ -182,6 +183,24 @@ export default {
       image: '',
       mp3: ''
     }
+  },
+  
+  methods: {
+    handleSearch(){
+      let value = document.getElementById('search').value;
+      console.log(value)
+      console.log(this.Database);
+      for (var i of this.Database){
+        if(i.name_song == value){
+          EventBus.$emit('playIt', i);
+          break;
+        }
+      }
+    }
+  },
+
+  computed: {
+    ...mapState(["Database"])
   },
   mounted(){
     //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo

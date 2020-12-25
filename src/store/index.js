@@ -10,6 +10,8 @@ import TopUsUk from '../assets/data/Topsongs/TopUsUk'
 import TopVietNam from '../assets/data/Topsongs/TopVietNam';
 import TopCpop from '../assets/data/Topsongs/TopCpop';
 
+import Database from '../assets/data/database';
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -21,7 +23,8 @@ export default new Vuex.Store({
     Chart,
     TopUsUk,
     TopVietNam,
-    TopCpop
+    TopCpop,
+    Database
   },
   mutations: {
   },
