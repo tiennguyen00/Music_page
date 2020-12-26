@@ -199,11 +199,9 @@ form .signup-link a:hover{
         methods: {
             openLoginForm(){
                 this.clickLogin = !this.clickLogin;
-                console.log("đã bật");
             },
             closeLoginForm(){
                 this.clickLogin = false;
-                console.log("da tắt");
             }
         }
     }
