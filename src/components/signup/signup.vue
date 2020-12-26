@@ -1,13 +1,13 @@
 <template>
     <div>    
         <div class="center">
-            <button @click="openLoginForm()">Login</button>
+            <button @click="openLoginForm()">Sign up</button>
         </div>
         <div v-show = "clickLogin" class="popup-overlay"></div>
         
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
-            <div class="title">Login</div>
+            <div class="title">Sign up</div>
             <form action="#">
             <div class="field">
                 <input type="text" required>
