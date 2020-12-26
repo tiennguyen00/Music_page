@@ -85,7 +85,7 @@
 
                      <li class="nav-item">
                       <a class="nav-link" href="javascript:void(0)">
-                        Singup
+                        <SignUp/>
                       </a>
                     </li>
                     
@@ -172,6 +172,7 @@
 // import * as a from 'link';    nhúng file tự code js ở đây.
 import EventBus from '@/store/eventBus.js';
 import Login from '@/components/Login/login.vue';
+import SignUp from './components/signup/signup.vue'
 
 export default {
   data(){
@@ -185,7 +186,8 @@ export default {
     }
   },
   components: {
-    Login
+    Login,
+    SignUp
   },
   mounted(){
     //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo
