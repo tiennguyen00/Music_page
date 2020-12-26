@@ -27,8 +27,14 @@ export default new Vuex.Store({
     Database
   },
   mutations: {
+    appendSong: (state, song) => {
+      state.Database.push(song);
+    }
   },
   actions: {
+    addSong: ({ commit }, song) => {
+      commit("appendSong", song);
+    }
   },
   modules: {
   }

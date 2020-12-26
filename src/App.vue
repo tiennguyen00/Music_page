@@ -107,6 +107,7 @@
           <div class="content">
             <div class="container-fluid">
               <!-- your content here -->
+              
               <router-view></router-view>
             </div>
           </div>
@@ -139,6 +140,39 @@
             image: this.image,
             mp3: this.mp3,
         }"/>
+
+<!-- Form thêm bài hát -->
+    <div class="card" v-show="showFormAddSong">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Add new song</h4>
+        </div>
+        <div class="card-body ">
+          <form>
+            <div class="form-group">
+              <label class="bmd-label-floating">Name song</label>
+              <input id = "inputNameSong" type="text" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="bmd-label-floating">Name performer</label>
+              <input id = "inputNamePerformer" type="text" class="form-control" required>
+            </div>
+          
+            <div class="form-group">
+              <label class="bmd-label-floating">Link image</label>
+              <input id="inputLinkImg" type="text" class="form-control" >
+            </div>
+      
+            <div class="form-group">
+              <label class="bmd-label-floating">Link mp3</label>
+              <input id = "inputLinkMp3" type="text" class="form-control" required>
+            </div>
+        
+            <button @click="addShowFormAddSong()" class="btn btn-primary pull-right">Add+</button>
+            <button @click="closeShowFormAddSong()" class="btn pull-right">Close</button>
+          </form>
+        </div>
+    </div>
   </body>
 </template>
 
@@ -166,6 +200,14 @@
 .footer{
   padding: 0;
 }
+
+.card{
+  width: 30%;
+  z-index: 999;
+  position: absolute;
+  background-color: #1d1d1d;
+  border: 5px solid purple;
+  transform: translate(50rem, -40rem);}
 </style>
 
 <script>
@@ -176,26 +218,52 @@ import {mapState, mapActions} from 'vuex';
 export default {
   data(){
     return {
+      showFormAddSong: false,
       selected: 1, // Biến này dùng để chỉnh sửa câc link nào được chọn
       //===================Các biến bên dưới dùng để nhận thông tin yêu cầu phát nhạc từ các cpnent trong views ========//
       name_song: '',
       name_performer: '',
       image: '',
-      mp3: ''
+      mp3: '',
     }
   },
   
   methods: {
+    ...mapActions(["addSong"]),
+
     handleSearch(){
       let value = document.getElementById('search').value;
-      console.log(value)
-      console.log(this.Database);
+      let flag = 0; //Kiểm tra xem trong mảng đã có bài hát mới truyền vào chưa, nều rồi sẽ trả về
       for (var i of this.Database){
-        if(i.name_song == value){
+        if(i.name_song.toUpperCase() === value.toUpperCase()){
           EventBus.$emit('playIt', i);
           break;
         }
       }
+
+      if(!flag)
+        this.showFormAddSong = true;
+    },
+
+    closeShowFormAddSong(){
+      this.showFormAddSong = false;
+    },
+    addShowFormAddSong(){
+      let inputNameSong = document.getElementById("inputNameSong").value;
+      let inputNamePerformer = document.getElementById("inputNamePerformer").value;
+      let inputLinkImg = document.getElementById("inputLinkImg").value;
+      let inputLinkMp3= document.getElementById("inputLinkMp3").value;
+
+      const payLoad = {
+        name_song: inputNameSong,
+        name_performer: inputNamePerformer,
+        mp3: inputLinkMp3,
+        img: inputLinkImg
+      }
+
+      this.addSong(payLoad);
+      
+      this.showFormAddSong = false;
     }
   },
 

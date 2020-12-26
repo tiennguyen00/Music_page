@@ -3,10 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Topsongs from "../views/Topsongs.vue";
 import Genres from "../views/Genres.vue";
-import Events from "../views/Events.vue";
 import Performer from "../views/Performer.vue";
 import Playlist from "../views/Playlist.vue";
-import Feedback from "../views/Feedback.vue";
 
 import index from "../components/Genres/index.vue";
 import topic from "../components/Genres/topic.vue";
