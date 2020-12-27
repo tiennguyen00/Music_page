@@ -104,4 +104,24 @@ export default [
         image:  require('@/assets/image/Genres/yg-family.png'),
         name: 'YG family'
      },
+     {
+        id: 22,
+        image:  require('@/assets/image/Genres/gym.png'),
+        name: 'Gym'
+     },
+     {
+        id: 23,
+        image:  require('@/assets/image/Genres/karaoke.png'),
+        name: 'Karaoke'
+     },
+     {
+        id: 24,
+        image:  require('@/assets/image/Genres/spa.png'),
+        name: 'Spa time'
+     },
+     {
+        id: 25,
+        image:  require('@/assets/image/Genres/yoga.png'),
+        name: 'Yoga'
+     },
 ]
