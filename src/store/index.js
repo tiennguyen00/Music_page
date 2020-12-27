@@ -9,6 +9,7 @@ import AllGenres from "../assets/data/Genres/AllGenres"
 import BannerImage from "../assets/data/Genres/Banner"
 import RecommendedPlaylist from "../assets/data/Genres/RecommendedPlaylist"
 import FeaturedTopics from "../assets/data/Genres/FeaturedTopics"
+import Moods from "../assets/data/Genres/Mood"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -20,7 +21,8 @@ export default new Vuex.Store({
     AllGenres,
     BannerImage,
     RecommendedPlaylist,
-    FeaturedTopics
+    FeaturedTopics,
+    Moods
   },
   mutations: {
   },
