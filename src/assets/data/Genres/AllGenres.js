@@ -1,98 +1,98 @@
 export default [
     {
         id: 1,
-        name_song: 'Blues Music'
+        name: 'Blues Music'
     },
     {
         id: 2,
-        name_song: 'Jazz Music',
+        name: 'Jazz Music',
     },
     {
         id: 3,
-        name_song: 'R&B'
+        name: 'R&B'
     },
     {
         id: 4,
-        name_song: 'Rock and Roll'
+        name: 'Rock and Roll'
     },
     {
         id: 5,
-        name_song: 'Rock Music'
+        name: 'Rock Music'
     },
     {
         id: 6,
-        name_song: 'Country Music'
+        name: 'Country Music'
     },
     {
         id: 7,
-        name_song: 'Soul Music'
+        name: 'Soul Music'
     },
     {
         id: 8,
-        name_song: 'Dance Music'
+        name: 'Dance Music'
     },
     {
         id: 9,
-        name_song: 'Rap/Hip-hop'
+        name: 'Rap/Hip-hop'
     },
     {
         id: 10,
-        name_song: 'EDM'
+        name: 'EDM'
     },
     {
         id: 11,
-        name_song: 'Classical'
+        name: 'Classical'
     },
     {
         id: 12,
-        name_song: 'House'
+        name: 'House'
     },
     {
         id: 13,
-        name_song: 'Latin'
+        name: 'Latin'
     },
     {
         id: 14,
-        name_song: 'Opera'
+        name: 'Opera'
     },
     {
         id: 15,
-        name_song: 'Pop ballad'
+        name: 'Pop ballad'
     },
     {
         id: 16,
-        name_song: 'Heavy metal'
+        name: 'Heavy metal'
     },
     {
         id: 17,
-        name_song: 'Pop'
+        name: 'Pop'
     },
     {
         id: 18,
-        name_song: 'Instrumental music'
+        name: 'Instrumental music'
     },
     {
         id: 19,
-        name_song: 'Religious music'
+        name: 'Religious music'
     },
     {
         id: 20,
-        name_song: 'Indie'
+        name: 'Indie'
     },
     {
         id: 21,
-        name_song: 'Dubstep'
+        name: 'Dubstep'
     },
     {
         id: 22,
-        name_song: 'Acoustic'
+        name: 'Acoustic'
     },
     {
         id: 23,
-        name_song: 'Folk'
+        name: 'Folk'
     },
     {
         id: 24,
-        name_song: 'Reggae'
+        name: 'Reggae'
     }
 ]

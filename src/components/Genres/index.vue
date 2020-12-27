@@ -1,7 +1,7 @@
 <template>
   <div>
     <AllGenres/>
-    <FeaturedGenres :FeaturedGenres="FeaturedGenres" :article="'Featured Genres'"/>
+    <FeaturedGenres :FeaturedGenres="FeaturedGenres"/>
     <RecommendedPlaylist/>
   </div>
 </template>

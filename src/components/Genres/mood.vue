@@ -1,20 +1,12 @@
 <template>
   <div>
-    <FeaturedTopic :FeaturedTopics="Moods"/>    
+      <h1>This is the mood</h1>
   </div>
 </template>
 
 <script>
-import FeaturedTopic from './FeaturedTopic.vue';
-import {mapState} from 'vuex'
 export default {
     name: 'mood',
-    components:{
-      FeaturedTopic,
-    },
-    computed: {
-      ...mapState(['Moods']),
-    }
 }
 </script>
 

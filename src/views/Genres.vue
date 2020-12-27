@@ -33,7 +33,9 @@ export default {
       }
   },
   computed:{
-    
+    //   changeSelect(){
+    //       return select
+    //   }
   },
   components: {
     Banner,

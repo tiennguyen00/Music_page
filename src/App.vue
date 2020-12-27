@@ -57,7 +57,7 @@
               </div>
           </div>
 
-          <div class="main-panel" style="overflow-y: hidden;">
+          <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top mod-padding">
               <div class="container-fluid">
@@ -82,7 +82,7 @@
                         <Login @abc = "abc($event)"/>
                       </a>
                       <div v-else>
-                        Ảnh
+                        <img :src="picture" class="avatar">
                       </div>
                     </li>
 
@@ -91,7 +91,7 @@
                         <SignUp />
                       </a>
                       <div v-else>
-                        Name
+                        <p class="name" @click="isLogin = false">{{name}}</p>
                       </div>
                     </li>
                     
@@ -207,6 +207,22 @@
   padding: 0;
 }
 
+.name{
+  font-size: 25px;
+  font-style: italic;
+  font-weight: bold;
+  color:white;
+  height: 25px;
+  margin: auto 0;
+
+}
+
+.avatar{
+  width: 40px;
+  height: 30px;
+  border-radius: 50%;
+}
+
 .card{
   width: 30%;
   z-index: 999;
@@ -253,7 +269,6 @@ import {mapState, mapActions} from 'vuex';
 import Login from '@/components/Login/login.vue';
 import SignUp from './components/signup/signup.vue'
 
-
 export default {
   data(){
     return {
@@ -265,17 +280,19 @@ export default {
       name_performer: '',
       image: '',
       mp3: '',
-      
-
+      picture:'',
+      name:''
     }
   },
   
   methods: {
     ...mapActions(["addSong"]),
-  
 
     abc(event){
-      this.isLogin = event;
+      this.isLogin = true;
+      this.picture = event.picture;
+      this.name = event.name;
+
     },
 
     handleSearch(){
@@ -325,6 +342,7 @@ export default {
     SignUp
   },
   mounted(){
+ 
     //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo
     this.mp3 = 'https://c1-ex-swe.nixcdn.com/NhacCuaTui913/JingleBellsNhacChuong-CrazyFrog-4273417.mp3?st=5G5fq57LnH0-0EGt0RVOtg&e=1608721009&download=true';
     // Băt sự kiện trên EventBus
@@ -334,7 +352,6 @@ export default {
       this.image = payLoad.image;
       this.mp3 = payLoad.mp3;
     })
-    
   }
 }
 </script>

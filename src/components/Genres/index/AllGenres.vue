@@ -3,7 +3,7 @@
       <ul class="list-genres">
           <div class="genre-item" v-for="genre in AllGenres" :key="genre.id">
               <i class="fa fa-angle-right item-icon"></i>
-              <li class="genre-name-item">{{genre.name_song}}</li>
+              <li class="genre-name-item">{{genre.name}}</li>
           </div>
       </ul>
       <i id="expand" @click="expandAllGenres()" :class="active" title="More genres" aria-hidden="true"></i>

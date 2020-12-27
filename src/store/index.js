@@ -16,8 +16,6 @@ import FeaturedGenres from "../assets/data/Genres/FeaturedGenres"
 import AllGenres from "../assets/data/Genres/AllGenres"
 import BannerImage from "../assets/data/Genres/Banner"
 import RecommendedPlaylist from "../assets/data/Genres/RecommendedPlaylist"
-import FeaturedTopics from "../assets/data/Genres/FeaturedTopics"
-import Moods from "../assets/data/Genres/Mood"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -34,9 +32,7 @@ export default new Vuex.Store({
     FeaturedGenres,
     AllGenres,
     BannerImage,
-    RecommendedPlaylist,
-    FeaturedTopics,
-    Moods
+    RecommendedPlaylist
   },
   mutations: {
     appendSong: (state, song) => {
