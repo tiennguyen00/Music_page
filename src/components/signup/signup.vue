@@ -1,14 +1,14 @@
 <template>
     <div>    
         <div class="center">
-            <button @click="openLoginForm()">Sign up</button>
+            <button @click="openLoginForm()" class="signIn_signUp_Btn">SIGN UP</button>
         </div>
         <div v-show = "clickLogin" class="popup-overlay"></div>
         
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Sign up</div>
-            <form action="#" @submit="signUp()">
+            <form action="#" @submit.prevent="signUp()">
               <div>
                 <avatar class="avatar"/>
               </div>
@@ -27,7 +27,7 @@
             <div class="field">
                 <input type="submit" value="Sign Up"  >
             </div>
-            <div class="signup-link">Adready has an account ? <a href="#">Sign In now</a></div>
+            <div class="signup-link">Adready has an account ? <a href="#" @click="switchSign()">Sign In now</a></div>
             </form>
         </div>
     </div>
@@ -51,7 +51,9 @@ import EventBus from '@/store/eventBus.js';
         },
         mounted(){
             this.datas = data;
-            
+            EventBus.$on('openSignUp', () => {
+            this.openLoginForm();
+          })
         },
         methods: {
             openLoginForm(){
@@ -72,10 +74,14 @@ import EventBus from '@/store/eventBus.js';
                 // this.datas.push({us,ps,mail})
                 // console.log('ok');
                 // return true;
-                console.log("CHạy signup")
-                let username = document.getElementById("username").value;
-                let password = document.getElementById("password").value;
+                // console.log("CHạy signup")
+                // let username = document.getElementById("username").value;
+                // let password = document.getElementById("password").value;
 
+                this.closeLoginForm();
+                EventBus.$emit('openLogin');
+            },
+            switchSign() {
                 this.closeLoginForm();
                 EventBus.$emit('openLogin');
             }
@@ -135,10 +141,70 @@ import EventBus from '@/store/eventBus.js';
   width:100%;
   height:100vh;
   z-index:1;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.7);
   
 }
+.signIn_signUp_Btn {
+    
+    font-size: 16px;
+    width: 80px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #1E243A;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
 
+.signIn_signUp_Btn:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.signIn_signUp_Btn:active {
+    color: #000
+}
+
+.signIn_signUp_Btn:active:after {
+    background: transparent;
+}
+
+.signIn_signUp_Btn:hover:before {
+    opacity: 1;
+}
+
+.signIn_signUp_Btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #1E243A;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
 .wrapper form .field{
   height: 50px;
   width: 100%;
