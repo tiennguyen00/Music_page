@@ -59,7 +59,7 @@
 
           <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top mod-padding">
               <div class="container-fluid">
                 <div class="navbar-wrapper col-sm-5">
                     <!-- <a class="navbar-brand" href="#"></a> -->
@@ -104,7 +104,7 @@
               </div>
             </nav>
             <!-- End Navbar -->
-          <div class="content">
+          <div class="content mod-padding-top">
             <div class="container-fluid">
               <!-- your content here -->
               
@@ -208,8 +208,13 @@
   background-color: #1d1d1d;
   border: 5px solid purple;
   transform: translate(50rem, -40rem);}
+.mod-padding {
+  padding: 0;
+}
+.mod-padding-top {
+  padding-top: 0;
+}
 </style>
-
 <script>
 // import * as a from 'link';    nhúng file tự code js ở đây.
 import EventBus from '@/store/eventBus.js';

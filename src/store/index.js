@@ -12,6 +12,10 @@ import TopCpop from '../assets/data/Topsongs/TopCpop';
 
 import Database from '../assets/data/database';
 
+import FeaturedGenres from "../assets/data/Genres/FeaturedGenres"
+import AllGenres from "../assets/data/Genres/AllGenres"
+import BannerImage from "../assets/data/Genres/Banner"
+import RecommendedPlaylist from "../assets/data/Genres/RecommendedPlaylist"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -24,7 +28,11 @@ export default new Vuex.Store({
     TopUsUk,
     TopVietNam,
     TopCpop,
-    Database
+    Database,
+    FeaturedGenres,
+    AllGenres,
+    BannerImage,
+    RecommendedPlaylist
   },
   mutations: {
     appendSong: (state, song) => {

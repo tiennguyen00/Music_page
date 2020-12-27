@@ -78,7 +78,7 @@ export default {
   methods: {
     startSlide(){
 
-      setInterval(()=>{   
+      setInterval(()=>{
         if(this.selected >= 4)
           this.selected = 1;
         else
