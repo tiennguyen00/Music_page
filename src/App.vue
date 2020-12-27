@@ -79,7 +79,7 @@
                   <ul class="navbar-nav">
                      <li class="nav-item">
                       <a class="nav-link" href="javascript:void(0)">
-                        <Login/>
+                        <Login @abc = "abc($event)"/>
                       </a>
                     </li>
 
@@ -177,6 +177,7 @@ import SignUp from './components/signup/signup.vue'
 export default {
   data(){
     return {
+      isLogin: false, //Biến này kiểm trã đã login chưa
       selected: 1, // Biến này dùng để chỉnh sửa câc link nào được chọn
       //===================Các biến bên dưới dùng để nhận thông tin yêu cầu phát nhạc từ các cpnent trong views ========//
       name_song: '',

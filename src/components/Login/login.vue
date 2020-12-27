@@ -33,6 +33,49 @@
     </div>
 </template>
 
+<script>
+
+    import users from '../signup/data.json';
+    export default{
+
+        data(){
+            return{
+                clickLogin: false,
+                dataSet : users
+            }
+        },
+        methods: {
+            openLoginForm(){
+                this.clickLogin = !this.clickLogin;
+            },
+            closeLoginForm(){
+                this.clickLogin = false;
+            }
+            ,
+            signIn(){
+                var uName = document.getElementById("uName").value;
+                var pW = document.getElementById("pW").value;
+                var usersList = this.dataSet;
+                console.log(usersList[0].name);
+                console.log(uName);
+                console.log(pW);
+                for(var i of usersList) {
+                    if(i.name == uName && i.password == pW) {
+                        this.clickLogin = false;
+                        this.$emit("abc", true);
+                        
+                    }
+                }
+                alert("Username or password is incorrect!");
+                return false;
+            },
+        }
+              
+    }
+        
+</script>
+
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
@@ -191,43 +234,3 @@ form .signup-link a:hover{
   text-decoration: underline;
 }
 </style>
-<script>
-
-    import users from '../signup/data.json';
-    export default{
-
-        data(){
-            return{
-                clickLogin: false,
-                dataSet : users
-            }
-        },
-        methods: {
-            openLoginForm(){
-                this.clickLogin = !this.clickLogin;
-            },
-            closeLoginForm(){
-                this.clickLogin = false;
-            }
-            ,
-            signIn(){
-                var uName = document.getElementById("uName").value;
-                var pW = document.getElementById("pW").value;
-                var usersList = this.dataSet;
-                console.log(usersList[0].name);
-                console.log(uName);
-                console.log(pW);
-                for(var i of usersList) {
-                    if(i.name == uName && i.password == pW) {
-                        this.clickLogin = false;
-                        return true;
-                    }
-                }
-                alert("Username or password is incorrect!");
-                return false;
-            }
-        }
-              
-    }
-        
-</script>
