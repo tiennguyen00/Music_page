@@ -8,27 +8,84 @@
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Sign up</div>
-            <form action="#">
+            <form action="#" @submit="signUp()">
+              <div>
+                <avatar class="avatar" @uploadPicture="uploadPicture($event)"/>
+              </div>
             <div class="field">
-                <input type="text" required>
+                <input type="text" required name="username" id="username">
                 <label>Username</label>
             </div>
             <div class="field">
-                <input type="password" required>
+                <input type="password" required name="password" id="password">
                 <label>Password</label>
             </div>
             <div class="field">
-                <input type="email" required>
+                <input type="email" required name="email">
                 <label>Email</label>
             </div>
             <div class="field">
-                <input type="submit" value="Sign Up">
+                <input type="submit" value="Sign Up"  >
             </div>
             <div class="signup-link">Adready has an account ? <a href="#">Sign In now</a></div>
             </form>
         </div>
     </div>
 </template>
+
+
+<script>
+import avatar from './avatar'
+import Avatar from './avatar.vue'
+import data from './data.json'
+import EventBus from '@/store/eventBus.js';
+    export default{
+        data(){
+            return{
+                clickLogin: false,
+                datas :[],
+                picture:null
+            }
+        },
+        components:{
+          avatar
+        },
+        mounted(){
+            this.datas = data;
+            
+        },
+        methods: {
+            openLoginForm(){
+                this.clickLogin = !this.clickLogin;
+            },
+            closeLoginForm(){
+                this.clickLogin = false;
+            },
+            signUp(){              
+                // const us = document.querySelector("input[name=username]").value
+                // for(var data of this.datas){
+                //   if(data.name == us){
+                //     return false;
+                //   }
+                // }
+                // const ps = document.querySelector("input[name=password]").value
+                // const mail = document.querySelector("input[name=email]").value
+                // this.datas.push({us,ps,mail})
+                // console.log('ok');
+                // return true;
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+
+                this.closeLoginForm();
+                EventBus.$emit('openLogin');
+            },
+            uploadPicture(event){
+              this.picture = event;
+            }
+        }
+
+    }
+</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -43,10 +100,14 @@
   background: #4158d0;
   color: #fff;
 }
+
+.avatar {
+  margin: 0 auto;
+}
 .wrapper{   
   position: fixed;
   transition:transform 500ms ease-in-out,opacity 300ms ease-in-out;
-  top:55%;
+  top:65%;
   left:50%;
   height: fit-content;
   transform:translate(-50%,-70%) scale(1.15);
@@ -188,21 +249,3 @@ form .signup-link a:hover{
   text-decoration: underline;
 }
 </style>
-
-<script>
-    export default{
-        data(){
-            return{
-                clickLogin: false
-            }
-        },
-        methods: {
-            openLoginForm(){
-                this.clickLogin = !this.clickLogin;
-            },
-            closeLoginForm(){
-                this.clickLogin = false;
-            }
-        }
-    }
-</script>

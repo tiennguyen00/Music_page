@@ -8,13 +8,13 @@
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Login</div>
-            <form action="#">
+            <form action="#" id="form">
             <div class="field">
-                <input type="text" required>
+                <input type="text" id="uName" required>
                 <label>Username</label>
             </div>
             <div class="field">
-                <input type="password" required>
+                <input type="password" id="pW" required>
                 <label>Password</label>
             </div>
             <div class="content">
@@ -25,13 +25,63 @@
                 <div class="pass-link"><a href="#">Forgot password?</a></div>
             </div>
             <div class="field">
-                <input type="submit" value="Login">
+                <input type="submit" @click="signIn()"  >Login </button>
             </div>
             <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
             </form>
         </div>
     </div>
 </template>
+
+<script>
+
+    import users from '../signup/data.json';
+    import EventBus from '@/store/eventBus.js';
+    export default{
+
+        data(){
+            return{
+                clickLogin: false,
+                dataSet : users
+            }
+        },
+        mounted(){
+          EventBus.$on('openLogin', () => {
+            this.openLoginForm();
+          })
+        },
+        methods: {
+            openLoginForm(){
+                this.clickLogin = !this.clickLogin;
+            },
+            closeLoginForm(){
+                this.clickLogin = false;
+            }
+            ,
+            signIn(){
+                var uName = document.getElementById("uName").value;
+                var pW = document.getElementById("pW").value;
+                var usersList = this.dataSet;
+                console.log(usersList[0].name);
+                console.log(uName);
+                console.log(pW);
+                for(var i of usersList) {
+                    if(i.name == uName && i.password == pW) {
+                        this.clickLogin = false;
+                        this.$emit("abc", true);
+                        return true;
+                        
+                    }
+                }
+                alert("Username or password is incorrect!");
+                return false;
+            },
+        }
+              
+    }
+        
+</script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -191,23 +241,3 @@ form .signup-link a:hover{
   text-decoration: underline;
 }
 </style>
-
-<script>
-    export default{
-        data(){
-            return{
-                clickLogin: false
-            }
-        },
-        methods: {
-            openLoginForm(){
-                // document.body.classList.add("showLoginForm");
-                this.clickLogin = !this.clickLogin;
-            },
-            closeLoginForm(){
-                // document.body.classList.remove("showLoginForm");
-                this.clickLogin = false;
-            }
-        }
-    }
-</script>
