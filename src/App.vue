@@ -79,13 +79,13 @@
                   <ul class="navbar-nav">
                      <li class="nav-item">
                       <a class="nav-link" href="javascript:void(0)">
-                        Singin
+                        <Login/>
                       </a>
                     </li>
 
                      <li class="nav-item">
                       <a class="nav-link" href="javascript:void(0)">
-                        Singup
+                        <SignUp/>
                       </a>
                     </li>
                     
@@ -123,7 +123,7 @@
               <br>
             </nav>
             <div class="copyright float-right" >
-              Footer
+              Footer 
             </div>
           </div>
         </footer>
@@ -150,12 +150,12 @@
           <form>
             <div class="form-group">
               <label class="bmd-label-floating">Name song</label>
-              <input id = "inputNameSong" type="text" class="form-control" required>
+              <input id = "inputNameSong" type="text" class="form-control" >
             </div>
             
             <div class="form-group">
               <label class="bmd-label-floating">Name performer</label>
-              <input id = "inputNamePerformer" type="text" class="form-control" required>
+              <input id = "inputNamePerformer" type="text" class="form-control" >
             </div>
           
             <div class="form-group">
@@ -165,7 +165,7 @@
       
             <div class="form-group">
               <label class="bmd-label-floating">Link mp3</label>
-              <input id = "inputLinkMp3" type="text" class="form-control" required>
+              <input id = "inputLinkMp3" type="text" class="form-control" >
             </div>
         
             <button @click="addShowFormAddSong()" class="btn btn-primary pull-right">Add+</button>
@@ -214,6 +214,8 @@
 // import * as a from 'link';    nhúng file tự code js ở đây.
 import EventBus from '@/store/eventBus.js';
 import {mapState, mapActions} from 'vuex'; 
+import Login from '@/components/Login/login.vue';
+import SignUp from './components/signup/signup.vue'
 
 export default {
   data(){
@@ -230,6 +232,8 @@ export default {
   
   methods: {
     ...mapActions(["addSong"]),
+
+    
 
     handleSearch(){
       let value = document.getElementById('search').value;
@@ -260,17 +264,25 @@ export default {
         mp3: inputLinkMp3,
         img: inputLinkImg
       }
+    
 
       this.addSong(payLoad);
       
       this.showFormAddSong = false;
     }
+    
   },
 
   computed: {
     ...mapState(["Database"])
   },
+  
+  components: {
+    Login,
+    SignUp
+  },
   mounted(){
+ 
     //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo
     this.mp3 = 'https://c1-ex-swe.nixcdn.com/NhacCuaTui913/JingleBellsNhacChuong-CrazyFrog-4273417.mp3?st=5G5fq57LnH0-0EGt0RVOtg&e=1608721009&download=true';
     // Băt sự kiện trên EventBus
