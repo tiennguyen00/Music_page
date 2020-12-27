@@ -1,14 +1,52 @@
 <template>
   <div class="avatar-wrapper">
-	<img class="profile-pic" src="" />
-	<div class="upload-button">
+	<img class="profile-pic" :src="picture" />
+	<div class="upload-button" @click="chon_anh">
 		<!-- <i class="fa fa-arrow-circle-up" aria-hidden="true"></i> -->
 	</div>
-	<input class="file-upload" type="file" accept="image/*"/>
+	<input class="file-upload" type="file" accept="image/*" id="upload" @change="thay_anh"/>
 </div>
 </template>
 <script>
+import firebase from 'firebase';
 export default {
+  data(){
+    return{
+        imageData: null,
+        picture: "",
+        uploadValue: 0
+    }
+  },
+  watch: {
+    picture: function(newpicture){
+      this.$emit("uploadPicture", newpicture);
+    }
+  },
+  methods:{
+    chon_anh(){
+      document.getElementById('upload').click();
+    },
+    thay_anh(event){
+      this.uploadValue=0;
+      this.picture=null;
+      this.imageData = event.target.files[0];
+
+      this.onUpload();
+    },
+    onUpload(){
+      this.picture=null;
+      const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+      storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, error=>{console.log(error.message)},
+      ()=>{this.uploadValue=100;
+        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+          this.picture =url;
+        });
+      }
+      );
+    }
+  }
 };
 </script>
 <style>

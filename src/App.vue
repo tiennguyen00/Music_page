@@ -221,6 +221,31 @@
   padding-top: 0;
 }
 </style>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAWgNdA_4jlFvQRaf2sdWGJkvV0DMOHxHM",
+    authDomain: "image-save-2c257.firebaseapp.com",
+    projectId: "image-save-2c257",
+    storageBucket: "image-save-2c257.appspot.com",
+    messagingSenderId: "543445416747",
+    appId: "1:543445416747:web:b522d7ad31c36677f4e36e",
+    measurementId: "G-H3VLMF55RC"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 <script>
 // import * as a from 'link';    nhúng file tự code js ở đây.
 import EventBus from '@/store/eventBus.js';

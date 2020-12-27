@@ -10,7 +10,7 @@
             <div class="title">Sign up</div>
             <form action="#" @submit.prevent="signUp()">
               <div>
-                <avatar class="avatar"/>
+                <avatar class="avatar" @uploadPicture="uploadPicture($event)"/>
               </div>
             <div class="field">
                 <input type="text" required name="username" id="username">
@@ -43,7 +43,8 @@ import EventBus from '@/store/eventBus.js';
         data(){
             return{
                 clickLogin: false,
-                datas :[]
+                datas :[],
+                picture:null
             }
         },
         components:{
@@ -74,17 +75,28 @@ import EventBus from '@/store/eventBus.js';
                 // this.datas.push({us,ps,mail})
                 // console.log('ok');
                 // return true;
+
                 // console.log("CHạy signup")
                 // let username = document.getElementById("username").value;
                 // let password = document.getElementById("password").value;
 
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+
+
                 this.closeLoginForm();
                 EventBus.$emit('openLogin');
             },
+
             switchSign() {
                 this.closeLoginForm();
                 EventBus.$emit('openLogin');
-            }
+            },
+
+            // uploadPicture(event){
+            //   this.picture = event;
+
+            // }
         }
 
     }
