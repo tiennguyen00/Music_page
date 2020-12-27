@@ -1,9 +1,9 @@
 <template>
   <div class="topic-container">
       <div class="topic" v-for="item in FeaturedTopics" :key="item.id">
-           <img :src="item.image" class="image" :alt="item.name"/>
-           <img :src="item.image" class="image_shadow" :alt="item.name"/>
-           <p class="topic-name">{{item.name}}</p>
+           <img :src="item.image" class="image" :alt="item.name_song"/>
+           <img :src="item.image" class="image_shadow" :alt="item.name_song"/>
+           <p class="topic-name">{{item.name_song}}</p>
       </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 }
  .topic {
   position: relative;
-  margin-right: 3.31%;
+  margin-right: 2.49%;
   margin-bottom: 5%;
   display: flex;
   flex-direction: column;

@@ -1,17 +1,17 @@
 export default [
     {
         id: 1,
-        name: 'Merry Christmas',
+        name_song: 'Merry Christmas',
         image: require('@/assets/image/Genres/christmas-topic.jpg')
     },
     {
         id: 2,
-        name: 'Best hit rap',
+        name_song: 'Best hit rap',
         image: require('@/assets/image/Genres/best-hit-rap.jpg')
     },
     {
         id: 3,
-        name: 'Christmas Jazz',
+        name_song: 'Christmas Jazz',
         image: require('@/assets/image/Genres/christmas-jazz.jpg')
     },
 ]

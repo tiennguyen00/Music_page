@@ -57,7 +57,7 @@
               </div>
           </div>
 
-          <div class="main-panel">
+          <div class="main-panel" style="overflow-y: hidden;">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top mod-padding">
               <div class="container-fluid">
@@ -253,6 +253,7 @@ import {mapState, mapActions} from 'vuex';
 import Login from '@/components/Login/login.vue';
 import SignUp from './components/signup/signup.vue'
 
+
 export default {
   data(){
     return {
@@ -264,6 +265,8 @@ export default {
       name_performer: '',
       image: '',
       mp3: '',
+      
+
     }
   },
   
@@ -322,7 +325,6 @@ export default {
     SignUp
   },
   mounted(){
- 
     //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo
     this.mp3 = 'https://c1-ex-swe.nixcdn.com/NhacCuaTui913/JingleBellsNhacChuong-CrazyFrog-4273417.mp3?st=5G5fq57LnH0-0EGt0RVOtg&e=1608721009&download=true';
     // Băt sự kiện trên EventBus
@@ -332,6 +334,7 @@ export default {
       this.image = payLoad.image;
       this.mp3 = payLoad.mp3;
     })
+    
   }
 }
 </script>

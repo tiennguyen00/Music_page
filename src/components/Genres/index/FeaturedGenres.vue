@@ -12,7 +12,7 @@
           <div class="wrap" v-for="FeaturedGenre in FeaturedGenres" :key="FeaturedGenre.id">
               <img :src="FeaturedGenre.image" class="image" :alt="FeaturedGenre.name"/>
               <img :src="FeaturedGenre.image" class="image_shadow" :alt="FeaturedGenre.name"/>
-              <p class="genre-name">{{FeaturedGenre.name}}</p>
+              <p class="genre-name">{{FeaturedGenre.name_song}}</p>
           </div>
         </div>
       </div>

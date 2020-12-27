@@ -8,7 +8,7 @@
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Sign up</div>
-            <form action="#" @submit="signUp()">
+            <form action="#" @submit.prevent="signUp()">
               <div>
                 <avatar class="avatar" @uploadPicture="uploadPicture($event)"/>
               </div>

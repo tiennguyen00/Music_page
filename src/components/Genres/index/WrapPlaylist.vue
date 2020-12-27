@@ -5,7 +5,7 @@
             <p class="see-all">See all</p>
         </div>
         <div class="playlist-container">
-            <RAlbums class="image" v-for="rplay in Playlist.playlists" :key="rplay.id" :image="rplay.image" :name_albums="rplay.name" :name_singer="'V.A'"/>
+            <RAlbums class="image" v-for="rplay in Playlist.playlists" :key="rplay.id" :image="rplay.image" :name_song="rplay.name" :name_performer="'V.A'"/>
         </div>
   </div>
 </template>
