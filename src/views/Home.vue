@@ -80,13 +80,13 @@ export default {
   methods: {
     startSlide(){
 
-      setInterval(()=>{   
+      setInterval(()=>{
         if(this.selected >= 4)
           this.selected = 1;
         else
           this.selected++;
       }, 10000)
-
+    
       setInterval(()=>{   
         document.getElementsByClassName("able")[0].click();
       }, 10000)

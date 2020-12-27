@@ -12,6 +12,10 @@
 </template>
 
 <style scoped>
+    img {
+        width: 150px;
+        height: 150px;   
+    }
     .wrap{
         position: relative;
         margin-right: 40px;
