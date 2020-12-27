@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div class="wrapper" @mouseenter="updateChart" @click="playIt">
         <div class="img">
             <img style="width: 50px;" :src="payLoad.image" alt="#">
@@ -70,5 +70,4 @@ export default {
         color: rgba(255, 255, 255, 0.4);
         font-size: 75%;
     }
-
 </style>
