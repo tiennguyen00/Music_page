@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="heading-container">
-        <article class="article">Featured Genres</article>
+        <article class="article">{{article}}</article>
         <div class="icon-container">
           <span @click="preImage()"><i :class="activeLeft" style="margin-right:30px;"></i></span>
           <span @click="nextImage()"><i :class="activeRight"></i></span>
@@ -31,21 +31,24 @@ export default {
       }
     },
     props:{
-      FeaturedGenres: [],
+      FeaturedGenres: Array,
+      article: '',
     },
     methods:{
         nextImage(){
-          if(this.count < Math.ceil(this.FeaturedGenres.length / 4 - 1))
+          if(this.count < Math.floor(this.FeaturedGenres.length / 4))
             this.count++;
           this.width = Number(document.querySelector('.slide-list-container').clientWidth);
           let sl = document.querySelector('.slide-list');
-          sl.setAttribute('style','transform: translateX(' + -this.width  * this.count + 'px)');
+          this.width *= -this.count;
+          sl.setAttribute('style','transform: translateX(' + this.width + 'px)');
         },
         preImage(){
           if(this.count > 0)
             this.count--;
           let sl = document.querySelector('.slide-list');
-          sl.setAttribute('style','transform: translateX(' + this.width * this.count + 'px)');
+          this.width += document.querySelector('.slide-list-container').clientWidth;
+          sl.setAttribute('style','transform: translateX(' + this.width + 'px)');
         }
     },
     computed:{
