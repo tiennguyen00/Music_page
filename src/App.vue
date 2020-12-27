@@ -59,13 +59,13 @@
 
           <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top mod-padding">
               <div class="container-fluid">
                 <div class="navbar-wrapper col-sm-5">
                     <!-- <a class="navbar-brand" href="#"></a> -->
-                    <i id="icon" class="fa fa-search"></i>
+                    <i @click = "handleSearch()" id="icon" class="fa fa-search"></i>
                     <div class="form__group field">
-                        <input type="input" class="form__field" placeholder="Search" name="search" id='search' required />
+                        <input type="input" class="form__field" placeholder="Search" name="search" id='search' @keyup.enter = "handleSearch()" />
                         <label for="name" class="form__label">Search</label>
                     </div>
                 </div>
@@ -78,15 +78,21 @@
                 <div class="collapse navbar-collapse justify-content-end">
                   <ul class="navbar-nav">
                      <li class="nav-item">
-                      <a class="nav-link" href="javascript:void(0)">
+                      <a v-if = "!isLogin"  id="formLogin" class="nav-link" href="javascript:void(0)">
                         <Login @abc = "abc($event)"/>
                       </a>
+                      <div v-else>
+                        Ảnh
+                      </div>
                     </li>
 
                      <li class="nav-item">
-                      <a class="nav-link" href="javascript:void(0)">
-                        <SignUp/>
+                      <a v-if = "!isLogin" class="nav-link" href="javascript:void(0)">
+                        <SignUp />
                       </a>
+                      <div v-else>
+                        Name
+                      </div>
                     </li>
                     
                     <li class="nav-item">
@@ -104,9 +110,10 @@
               </div>
             </nav>
             <!-- End Navbar -->
-          <div class="content">
+          <div class="content mod-padding-top">
             <div class="container-fluid">
               <!-- your content here -->
+              
               <router-view></router-view>
             </div>
           </div>
@@ -139,6 +146,39 @@
             image: this.image,
             mp3: this.mp3,
         }"/>
+
+<!-- Form thêm bài hát -->
+    <div class="card" v-show="showFormAddSong">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Add new song</h4>
+        </div>
+        <div class="card-body ">
+          <form>
+            <div class="form-group">
+              <label class="bmd-label-floating">Name song</label>
+              <input id = "inputNameSong" type="text" class="form-control" >
+            </div>
+            
+            <div class="form-group">
+              <label class="bmd-label-floating">Name performer</label>
+              <input id = "inputNamePerformer" type="text" class="form-control" >
+            </div>
+          
+            <div class="form-group">
+              <label class="bmd-label-floating">Link image</label>
+              <input id="inputLinkImg" type="text" class="form-control" >
+            </div>
+      
+            <div class="form-group">
+              <label class="bmd-label-floating">Link mp3</label>
+              <input id = "inputLinkMp3" type="text" class="form-control" >
+            </div>
+        
+            <button @click="addShowFormAddSong()" class="btn btn-primary pull-right">Add+</button>
+            <button @click="closeShowFormAddSong()" class="btn pull-right">Close</button>
+          </form>
+        </div>
+    </div>
   </body>
 </template>
 
@@ -166,11 +206,25 @@
 .footer{
   padding: 0;
 }
-</style>
 
+.card{
+  width: 30%;
+  z-index: 999;
+  position: absolute;
+  background-color: #1d1d1d;
+  border: 5px solid purple;
+  transform: translate(50rem, -40rem);}
+.mod-padding {
+  padding: 0;
+}
+.mod-padding-top {
+  padding-top: 0;
+}
+</style>
 <script>
 // import * as a from 'link';    nhúng file tự code js ở đây.
 import EventBus from '@/store/eventBus.js';
+import {mapState, mapActions} from 'vuex'; 
 import Login from '@/components/Login/login.vue';
 import SignUp from './components/signup/signup.vue'
 
@@ -178,19 +232,71 @@ export default {
   data(){
     return {
       isLogin: false, //Biến này kiểm trã đã login chưa
+      showFormAddSong: false,
       selected: 1, // Biến này dùng để chỉnh sửa câc link nào được chọn
       //===================Các biến bên dưới dùng để nhận thông tin yêu cầu phát nhạc từ các cpnent trong views ========//
       name_song: '',
       name_performer: '',
       image: '',
-      mp3: ''
+      mp3: '',
     }
   },
+  
+  methods: {
+    ...mapActions(["addSong"]),
+
+    abc(event){
+      this.isLogin = event;
+    },
+
+    handleSearch(){
+      let value = document.getElementById('search').value;
+      let flag = 0; //Kiểm tra xem trong mảng đã có bài hát mới truyền vào chưa, nều rồi sẽ trả về
+      for (var i of this.Database){
+        if(i.name_song.toUpperCase() === value.toUpperCase()){
+          EventBus.$emit('playIt', i);
+          break;
+        }
+      }
+
+      if(!flag)
+        this.showFormAddSong = true;
+    },
+
+    closeShowFormAddSong(){
+      this.showFormAddSong = false;
+    },
+    addShowFormAddSong(){
+      let inputNameSong = document.getElementById("inputNameSong").value;
+      let inputNamePerformer = document.getElementById("inputNamePerformer").value;
+      let inputLinkImg = document.getElementById("inputLinkImg").value;
+      let inputLinkMp3= document.getElementById("inputLinkMp3").value;
+
+      const payLoad = {
+        name_song: inputNameSong,
+        name_performer: inputNamePerformer,
+        mp3: inputLinkMp3,
+        img: inputLinkImg
+      }
+    
+
+      this.addSong(payLoad);
+      
+      this.showFormAddSong = false;
+    }
+    
+  },
+
+  computed: {
+    ...mapState(["Database"])
+  },
+  
   components: {
     Login,
     SignUp
   },
   mounted(){
+ 
     //Thiết lập nhạc mặc định cho Trình phát nhạc, tránh tính trạng lỗi phát chồng chéo
     this.mp3 = 'https://c1-ex-swe.nixcdn.com/NhacCuaTui913/JingleBellsNhacChuong-CrazyFrog-4273417.mp3?st=5G5fq57LnH0-0EGt0RVOtg&e=1608721009&download=true';
     // Băt sự kiện trên EventBus

@@ -15,10 +15,10 @@
             <i class="fa fa-bars"></i>
            <div class="icon_control">
                 <i class="fa fa-volume-up"></i>
-                <i class="fa fa-backward"></i>
+                <i @click="beforeSong()" class="fa fa-backward"></i>
                 <i id="btn-play" v-if="!isPlay" @click="btn_play" class="fa fa-play"></i>
                 <i v-else @click="btn_play" class="fa fa-pause"></i>
-                <i class="fa fa-forward"></i>
+                <i @click="afterSong()" class="fa fa-forward"></i>
                 <i class="fa fa-usb"></i>
            </div>
             <i v-if="isLove" @click="love" class="fa fa-heart-o"></i>
@@ -33,7 +33,7 @@
 export default {
     props: {
         newSong: {
-            type: Object 
+            type: Object //Chứa bài hát mới được truyền vào
         }
     },
     data(){
@@ -47,7 +47,7 @@ export default {
             timeduration: 0, //Dạng số của b ,
 
             listPlay: [], //Danh sách các bài hát đang trong hàng chờ,
-            id: 0 //Số lượng bài hát hiện tại trong hàng chờ (listPlay).
+            id: 0 // Số id của bài hát hiện tại đang phát trong mảng listPlay, tính từ 0
 
         }
     },
@@ -60,29 +60,34 @@ export default {
     },
     watch: {
         newSong: function(newSong){
-            var flag = 1;
-            if(this.listPlay[0].name_song == newSong.name_song)
-                flag = 0;
-            if (flag){
-                var btnPlay = document.getElementById("btn-play");
-                this.listPlay.shift();
+            let flag = 0;
+     
+            // Kiểm tra xem bài hát mới nhập vào đã năm trong danh sách listPlay chưa?
+            for (var i = 0; i < this.listPlay.length; i++)
+                if(this.listPlay[i].name_song == newSong.name_song)
+                    flag = 1;
+            
+
+            let btnPlay = document.getElementById("btn-play");
+            if (!flag){
                 this.listPlay.push(newSong); 
           
                 // Thiết lập lại giá trị ban đầu của livetime, a -> khi nó vừa chuyển sang bài mới
                 this.livetime = 0;
                 this.a = '';
+                this.id++;
+            }
 
+            //Phát bài hát mà biến newSong vừa nhận hoặc vừa cập nhật
             if (audio.play() !== undefined) {
-                audio.play().then(function() {
-                    audio.play();
-                    btnPlay.click();
-                    
-                }).catch(function(error) {
-                    console.log(error);
-                });
+                    audio.play().then(function() {
+                        audio.play();
+                        btnPlay.click();                   
+                    }).catch(function(error) {
+                        console.log(error);
+                    });
             }
-                
-            }
+
         },
     },
     
@@ -120,7 +125,40 @@ export default {
             //Nút play/pause
             var method = this.isPlay ? "play" : "pause";
             audio[method]();
-            return false;
+   
+        },
+        beforeSong(){
+            if(this.id > 1){
+                this.newSong.name_song = this.listPlay[this.id-1].name_song;
+                this.newSong.name_performer = this.listPlay[this.id-1].name_performer;
+                this.newSong.mp3 = this.listPlay[this.id-1].mp3;
+                this.id--;
+
+                // Reset lại nút
+                this.livetime = 0;
+                this.btn_play();
+               
+                      
+            }
+        },
+        afterSong(){
+
+            // ===============================================================================================
+            // Chưa fix dc lỗi này ở nút chuyển tới bài hát mới (do newSong ở cuối mảng luôn bị cập nhật theo)\
+            // Lỗi khi chuyển bài hát thì nó ko tự động phát nhạc.
+            // ===============================================================================================
+
+            if (this.id < this.listPlay.length-2){
+                this.newSong.name_song = this.listPlay[this.id+1].name_song;
+                this.newSong.name_performer = this.listPlay[this.id+1].name_performer;
+                this.newSong.mp3 = this.listPlay[this.id+1].mp3;
+                this.id++;
+
+                  // Reset lại nút
+                this.livetime = 0;
+                this.btn_play();
+              
+            }
         }
        
     },
@@ -140,7 +178,6 @@ export default {
         // Thiết lập lại giá trị ban đầu của timeduration, b -> khi nó vừa chuyển sang bài mới
         this.timeduration = audio.duration;
         this.b = this.time_hh_mm(audio.duration);
-      
     }
 }
 </script>

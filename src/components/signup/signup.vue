@@ -8,7 +8,7 @@
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Sign up</div>
-            <form action="#">
+            <form action="#" @submit="signUp()">
               <div>
                 <avatar class="avatar"/>
               </div>
@@ -17,7 +17,7 @@
                 <label>Username</label>
             </div>
             <div class="field">
-                <input type="password" required name="password">
+                <input type="password" required name="password" id="password">
                 <label>Password</label>
             </div>
             <div class="field">
@@ -25,13 +25,64 @@
                 <label>Email</label>
             </div>
             <div class="field">
-                <input type="button" value="Sign Up" @click="signUp()" >
+                <input type="submit" value="Sign Up"  >
             </div>
             <div class="signup-link">Adready has an account ? <a href="#">Sign In now</a></div>
             </form>
         </div>
     </div>
 </template>
+
+
+<script>
+import avatar from './avatar'
+import Avatar from './avatar.vue'
+import data from './data.json'
+import EventBus from '@/store/eventBus.js';
+    export default{
+        data(){
+            return{
+                clickLogin: false,
+                datas :[]
+            }
+        },
+        components:{
+          avatar
+        },
+        mounted(){
+            this.datas = data;
+            
+        },
+        methods: {
+            openLoginForm(){
+                this.clickLogin = !this.clickLogin;
+            },
+            closeLoginForm(){
+                this.clickLogin = false;
+            },
+            signUp(){              
+                // const us = document.querySelector("input[name=username]").value
+                // for(var data of this.datas){
+                //   if(data.name == us){
+                //     return false;
+                //   }
+                // }
+                // const ps = document.querySelector("input[name=password]").value
+                // const mail = document.querySelector("input[name=email]").value
+                // this.datas.push({us,ps,mail})
+                // console.log('ok');
+                // return true;
+                console.log("CHạy signup")
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+
+                this.closeLoginForm();
+                EventBus.$emit('openLogin');
+            }
+        }
+
+    }
+</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -195,47 +246,3 @@ form .signup-link a:hover{
   text-decoration: underline;
 }
 </style>
-
-<script>
-import avatar from './avatar'
-import Avatar from './avatar.vue'
-import data from './data.json'
-    export default{
-        data(){
-            return{
-                clickLogin: false,
-                datas :[]
-            }
-        },
-        components:{
-          avatar
-        },
-        mounted(){
-            this.datas = data;
-            
-        },
-        methods: {
-            openLoginForm(){
-                this.clickLogin = !this.clickLogin;
-            },
-            closeLoginForm(){
-                this.clickLogin = false;
-            },
-            signUp(){
-                 
-                const us = document.querySelector("input[name=username]").value
-                for(var data of this.datas){
-                  if(data.name == us){
-                    return false;
-                  }
-                }
-                const ps = document.querySelector("input[name=password]").value
-                const mail = document.querySelector("input[name=email]").value
-                this.datas.push({us,ps,mail})
-                console.log('ok');
-                return true;
-            }
-        }
-
-    }
-</script>

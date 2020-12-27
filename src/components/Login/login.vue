@@ -36,6 +36,7 @@
 <script>
 
     import users from '../signup/data.json';
+    import EventBus from '@/store/eventBus.js';
     export default{
 
         data(){
@@ -43,6 +44,11 @@
                 clickLogin: false,
                 dataSet : users
             }
+        },
+        mounted(){
+          EventBus.$on('openLogin', () => {
+            this.openLoginForm();
+          })
         },
         methods: {
             openLoginForm(){
@@ -63,6 +69,7 @@
                     if(i.name == uName && i.password == pW) {
                         this.clickLogin = false;
                         this.$emit("abc", true);
+                        return true;
                         
                     }
                 }

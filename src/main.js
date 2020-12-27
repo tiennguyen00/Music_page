@@ -14,7 +14,28 @@ const routers = new VueRouter({
   router,
   linkExactActiveClass: "nav-item active"
 });
-;
+
+// Hàm để add thẳng vào máy file (JSON) trong máy.
+
+// Vue.mixin({
+//   methods: {
+//     readFromData: function(linkdata){
+//       const fs = require('fs');
+//       var dataJson = fs.readFileSync(linkdata);
+//       var resultObject = JSON.parse(dataJson);
+//       return resultObject;
+//     },
+//     writeToData: function(resultObject, linkdata){
+//       const fs = require('fs');
+//       var resultString = JSON.stringify(resultObject);
+//       fs.writeFileSync(linkdata, resultString);
+//     }
+//   }
+// })
+
+
+
+
 
 new Vue({
   router,

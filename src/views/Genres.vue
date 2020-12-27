@@ -14,8 +14,8 @@
       </ul>
     </div>
 
-    <div class="slider ">
-      <poster />
+    <div class="slider">
+      <banner/>
     </div>
     <div class="content">
       <router-view></router-view>
@@ -24,15 +24,12 @@
 </template>
 
 <script>
-import Poster from "@/components/Genres/poster.vue";
+import Banner from '../components/Genres/banner.vue';
 export default {
   name: "Genres",
   data(){
       return {
           selected: 1,
-          navtitle: ['Genres'
-              
-          ]
       }
   },
   computed:{
@@ -41,7 +38,7 @@ export default {
     //   }
   },
   components: {
-    Poster,
+    Banner,
   },
   
 };
@@ -53,17 +50,15 @@ export default {
   padding: 0;
   margin: 0;
   list-style-type: none;
-  border-bottom: 1px solid rgba(255,255,255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   margin-bottom: 2%;
 }
 
 .nav-item {
-    
     font-size: 1.3rem;
     font-family: 'Roboto';
     font-weight: bold;
-    opacity: 0.7;
-    
+    opacity: 0.8;
 }
 .nav-link {
     width: 150px;
@@ -76,5 +71,8 @@ export default {
 .active {
     color: #1BA3B5;
     border-bottom: 2px solid #1BA3B5;
+}
+.slider {
+  margin-bottom: 5%;
 }
 </style>

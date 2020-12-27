@@ -10,6 +10,12 @@ import TopUsUk from '../assets/data/Topsongs/TopUsUk'
 import TopVietNam from '../assets/data/Topsongs/TopVietNam';
 import TopCpop from '../assets/data/Topsongs/TopCpop';
 
+import Database from '../assets/data/database';
+
+import FeaturedGenres from "../assets/data/Genres/FeaturedGenres"
+import AllGenres from "../assets/data/Genres/AllGenres"
+import BannerImage from "../assets/data/Genres/Banner"
+import RecommendedPlaylist from "../assets/data/Genres/RecommendedPlaylist"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -21,11 +27,22 @@ export default new Vuex.Store({
     Chart,
     TopUsUk,
     TopVietNam,
-    TopCpop
+    TopCpop,
+    Database,
+    FeaturedGenres,
+    AllGenres,
+    BannerImage,
+    RecommendedPlaylist
   },
   mutations: {
+    appendSong: (state, song) => {
+      state.Database.push(song);
+    }
   },
   actions: {
+    addSong: ({ commit }, song) => {
+      commit("appendSong", song);
+    }
   },
   modules: {
   }
