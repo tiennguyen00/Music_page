@@ -1,14 +1,14 @@
 <template>
     <div>    
-        <div class="center">
-            <button @click="openLoginForm()">Login</button>
+        <div class = "center">
+            <button @click="openLoginForm()"  class ="signIn_signUp_Btn">LOGIN</button>
         </div>
         <div v-show = "clickLogin" class="popup-overlay"></div>
         
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Login</div>
-            <form action="#" id="form">
+            <form action="#" @submit="signIn()">
             <div class="field">
                 <input type="text" id="uName" required>
                 <label>Username</label>
@@ -25,9 +25,9 @@
                 <div class="pass-link"><a href="#">Forgot password?</a></div>
             </div>
             <div class="field">
-                <input type="submit" @click="signIn()"  >Login </button>
+                <input type="submit" @click="signIn()" value="Login">
             </div>
-            <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
+            <div class="signup-link">Not a member? <a href="#" @click="switchSign()">Signup now</a></div>
             </form>
         </div>
     </div>
@@ -76,6 +76,10 @@
                 alert("Username or password is incorrect!");
                 return false;
             },
+            switchSign() {
+              this.closeLoginForm();
+                EventBus.$emit('openSignUp');
+            }
         }
               
     }
@@ -226,6 +230,69 @@ form .field input[type="submit"]{
 form .field input[type="submit"]:active{
   transform: scale(0.95);
 }
+.signIn_signUp_Btn {
+    
+    font-size: 16px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #1E243A;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.signIn_signUp_Btn:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+
+    border-radius: 10px;
+}
+
+.signIn_signUp_Btn:active {
+    color: #000
+}
+
+.signIn_signUp_Btn:active:after {
+    background: transparent;
+}
+
+.signIn_signUp_Btn:hover:before {
+    opacity: 1;
+}
+
+.signIn_signUp_Btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #1E243A;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
 form .signup-link{
   color: #262626;
   margin-top: 20px;

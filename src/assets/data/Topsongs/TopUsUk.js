@@ -11,7 +11,7 @@ export default[
         name_song: "Reality",
         name_performer: "Lost Frequencecies",
         image: require(`@/assets/image/Topsong/Reality.jpg`),
-        mp3: "https://data2.chiasenhac.com/stream2/1692/2/1691028-16b8afd7/128/Reality%20-%20Lost%20Frequencies_%20Janieck%20Devy.mp3"
+        mp3: "https://data22.chiasenhac.com/downloads/1541/0/1540695-49ecd0c4/128/Reality%20-%20Lost%20Frequencies_%20Janieck%20Devy.mp3"
     },
     {
         id: 3,

@@ -10,7 +10,7 @@
           -->
               <div class="logo">
                   <a href="#" class="simple-text logo-normal">
-                      LOGO
+                      <img src="./assets/image/LOGOMS.png" alt="LOGO" width= 81%>
                   </a>
               </div>
               <div class="sidebar-wrapper">

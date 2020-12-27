@@ -24,6 +24,10 @@ export default {
         display: flex;
         margin: 20px 0;
     }
+    .wrap:hover{
+        background-color: #1da4b6;
+        border-radius: 10px;
+    }
     .image{
         /* flex-grow: 1; */
         height: 50px;
