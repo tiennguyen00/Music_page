@@ -34,7 +34,7 @@
 </template>
 
 <script>
-
+    import firebase from 'firebase'
     import users from '../signup/data.json';
     import EventBus from '@/store/eventBus.js';
     export default{
@@ -42,10 +42,23 @@
         data(){
             return{
                 clickLogin: false,
-                dataSet : users
+                dataSet : [],
             }
         },
         mounted(){
+          let data = [];
+
+          firebase.database().ref().on('value',function(snapshot) {
+            snapshot.forEach((childSnapshot)=>{
+              var key = childSnapshot.key;
+              var vl = childSnapshot.val();
+              var x = {name:key,value:vl};
+              data.push(x);
+            }
+            )});
+          this.dataSet = data;
+          
+          console.log(this.dataSet)
           EventBus.$on('openLogin', () => {
             this.openLoginForm();
           })
@@ -62,15 +75,11 @@
                 var uName = document.getElementById("uName").value;
                 var pW = document.getElementById("pW").value;
                 var usersList = this.dataSet;
-                console.log(usersList[0].name);
-                console.log(uName);
-                console.log(pW);
                 for(var i of usersList) {
-                    if(i.name == uName && i.password == pW) {
+                    if(i.name == uName && i.value.password == pW) {
                         this.clickLogin = false;
-                        this.$emit("abc", true);
+                        this.$emit("abc",{picture:i.value.picture,name:i.name} );
                         return true;
-                        
                     }
                 }
                 alert("Username or password is incorrect!");

@@ -82,7 +82,7 @@
                         <Login @abc = "abc($event)"/>
                       </a>
                       <div v-else>
-                        Ảnh
+                      <img :src="picture" alt="#" class="avatar">
                       </div>
                     </li>
 
@@ -91,7 +91,7 @@
                         <SignUp />
                       </a>
                       <div v-else>
-                        Name
+                        <p class="name" @click="isLogin = false">{{name}}</p>
                       </div>
                     </li>
                     
@@ -220,6 +220,19 @@
 .mod-padding-top {
   padding-top: 0;
 }
+.name{
+  font-size: 25px;
+  font-style: italic;
+  font-weight: bold;
+  color:white;
+  height: 25px;
+  margin: auto 0;
+}
+.avatar{
+  width: 40px;
+  height: 30px;
+  border-radius: 50%;
+}
 </style>
 
 
@@ -265,7 +278,8 @@ export default {
       name_performer: '',
       image: '',
       mp3: '',
-      
+      picture: '',
+      name: ''
 
     }
   },
@@ -275,7 +289,10 @@ export default {
   
 
     abc(event){
-      this.isLogin = event;
+      this.isLogin = true;
+      this.picture = event.picture;
+      this.name = event.name;
+      
     },
 
     handleSearch(){

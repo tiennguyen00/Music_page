@@ -13,7 +13,7 @@
                 <avatar class="avatar" @uploadPicture="uploadPicture($event)"/>
               </div>
             <div class="field">
-                <input type="text" required name="username" id="username">
+                <input type="text" required name="username" id="username" @change="usernameChange()">
                 <label>Username</label>
             </div>
             <div class="field">
@@ -21,11 +21,11 @@
                 <label>Password</label>
             </div>
             <div class="field">
-                <input type="email" required name="email">
+                <input type="email" required name="email" id="email" >
                 <label>Email</label>
             </div>
             <div class="field">
-                <input type="submit" value="Sign Up"  >
+                <input type="submit" value="Sign Up" id="submit" >
             </div>
             <div class="signup-link">Adready has an account ? <a href="#" @click="switchSign()">Sign In now</a></div>
             </form>
@@ -35,15 +35,14 @@
 
 
 <script>
-import avatar from './avatar'
-import Avatar from './avatar.vue'
-import data from './data.json'
+import firebase from 'firebase'
+import avatar from './avatar.vue'
 import EventBus from '@/store/eventBus.js';
     export default{
         data(){
             return{
                 clickLogin: false,
-                datas :[],
+                datas: [],
                 picture:null
             }
         },
@@ -51,9 +50,19 @@ import EventBus from '@/store/eventBus.js';
           avatar
         },
         mounted(){
-            this.datas = data;
-            EventBus.$on('openSignUp', () => {
-            this.openLoginForm();
+            let data = [];
+
+          firebase.database().ref().on('value',function(snapshot) {
+            snapshot.forEach((childSnapshot)=>{
+              var key = childSnapshot.key;
+              var vl = childSnapshot.val();
+              var x = {name:key,value:vl};
+              data.push(x);
+            }
+            )});
+          this.datas = data;
+          EventBus.$on('openSignUp', () => {
+          this.openLoginForm();
           })
         },
         methods: {
@@ -63,29 +72,36 @@ import EventBus from '@/store/eventBus.js';
             closeLoginForm(){
                 this.clickLogin = false;
             },
-            signUp(){              
-                // const us = document.querySelector("input[name=username]").value
-                // for(var data of this.datas){
-                //   if(data.name == us){
-                //     return false;
-                //   }
-                // }
-                // const ps = document.querySelector("input[name=password]").value
-                // const mail = document.querySelector("input[name=email]").value
-                // this.datas.push({us,ps,mail})
-                // console.log('ok');
-                // return true;
+            usernameChange(){
+              let username = document.getElementById("username");
+              let submit = document.getElementById("submit");
+              for(var data of this.datas){
+                  if(data.name == username.value){
+                    alert("Tên đăng nhập đã tồn tại");
+                    
+                    submit.setAttribute("disabled", true);
+                    return false;
+                }
+              } 
+              submit.removeAttribute("disabled"); 
+              return true;
 
-                // console.log("CHạy signup")
-                // let username = document.getElementById("username").value;
-                // let password = document.getElementById("password").value;
-
+            },
+            signUp(){    
                 let username = document.getElementById("username").value;
-                let password = document.getElementById("password").value;
+                let pass = document.getElementById("password").value;
+                let mail = document.getElementById("email").value;                
 
-
+                const storeRef = firebase.database().ref(username );
+                storeRef.set({
+                  name:username,
+                   password:pass,
+                    email:mail,
+                    picture:this.picture
+                });
                 this.closeLoginForm();
                 EventBus.$emit('openLogin');
+                return true;
             },
 
             switchSign() {
@@ -93,10 +109,10 @@ import EventBus from '@/store/eventBus.js';
                 EventBus.$emit('openLogin');
             },
 
-            // uploadPicture(event){
-            //   this.picture = event;
+            uploadPicture(event){
+              this.picture = event;
 
-            // }
+            }
         }
 
     }

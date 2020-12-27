@@ -12,7 +12,8 @@ firebase.initializeApp({
   storageBucket: "image-save-2c257.appspot.com",
   messagingSenderId: "543445416747",
   appId: "1:543445416747:web:150eb1d62ab23de9f4e36e",
-  measurementId: "G-GWVM9NY84Y"
+  measurementId: "G-GWVM9NY84Y",
+  databaseURL:'https://image-save-2c257-default-rtdb.europe-west1.firebasedatabase.app'
 })
 
 import MusicPlayer from '@/components/MusicPlayer.vue';
