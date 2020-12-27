@@ -2,7 +2,7 @@
   <div class="avatar-wrapper">
 	<img class="profile-pic" src="" />
 	<div class="upload-button">
-		<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+		<!-- <i class="fa fa-arrow-circle-up" aria-hidden="true"></i> -->
 	</div>
 	<input class="file-upload" type="file" accept="image/*"/>
 </div>
@@ -15,8 +15,8 @@ export default {
 @charset "UTF-8";
 .avatar-wrapper {
   position: relative;
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   margin: 50px auto;
   border-radius: 50%;
   overflow: hidden;
@@ -44,11 +44,11 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
-  font-size: 190px;
+  font-size: 120px;
   background: #ecf0f1;
   color: #34495e;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 50px;
 }
 .avatar-wrapper .upload-button {
   position: absolute;
@@ -65,6 +65,9 @@ export default {
   text-align: center;
   opacity: 0;
   transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  max-width: 200px;
   color: white;
 }
 .avatar-wrapper .upload-button:hover .fa-arrow-circle-up {
