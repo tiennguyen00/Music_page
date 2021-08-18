@@ -8,26 +8,27 @@
         <div v-show = "clickLogin" class="wrapper">
             <div class="popup-close" @click="closeLoginForm()">&times;</div>
             <div class="title">Sign up</div>
-            <form action="#" @submit.prevent="signUp()">
-              <div>
-                <avatar class="avatar" @uploadPicture="uploadPicture($event)"/>
+            <form action="http://localhost:3000/addUser" method="post" enctype="multipart/form-data">
+              <div >
+                <label style="display: inline" stt for="image">Select avater:</label>
+                <input type="file" id="img" name="image" accept="image/*" @change="upload">
               </div>
-            <div class="field">
-                <input type="text" required name="username" id="username" @change="usernameChange()">
-                <label>Username</label>
-            </div>
-            <div class="field">
-                <input type="password" required name="password" id="password">
-                <label>Password</label>
-            </div>
-            <div class="field">
-                <input type="email" required name="email" id="email" >
-                <label>Email</label>
-            </div>
-            <div class="field">
-                <input type="submit" value="Sign Up" id="submit" >
-            </div>
-            <div class="signup-link">Adready has an account ? <a href="#" @click="switchSign()">Sign In now</a></div>
+              <div class="field">
+                  <input type="text" required name="username" id="username" >
+                  <label>Username</label>
+              </div>
+              <div class="field">
+                  <input type="password" required name="password" id="password">
+                  <label>Password</label>
+              </div>
+              <div class="field">
+                  <input type="email" required name="email" id="email" >
+                  <label>Email</label>
+              </div>
+              <div class="field">
+                  <button type="submit" value="Sign Up" id="submit" >Sign in</button>
+              </div>
+              <div class="signup-link">Adready has an account ? <a href="#" @click="switchSign()">Sign In now</a></div>
             </form>
         </div>
     </div>
@@ -35,85 +36,40 @@
 
 
 <script>
-import firebase from 'firebase'
-import avatar from './avatar.vue'
 import EventBus from '@/store/eventBus.js';
-    export default{
-        data(){
-            return{
-                clickLogin: false,
-                datas: [],
-                picture:null
-            }
-        },
-        components:{
-          avatar
-        },
-        mounted(){
-            let data = [];
 
-          firebase.database().ref().on('value',function(snapshot) {
-            snapshot.forEach((childSnapshot)=>{
-              var key = childSnapshot.key;
-              var vl = childSnapshot.val();
-              var x = {name:key,value:vl};
-              data.push(x);
-            }
-            )});
-          this.datas = data;
-          EventBus.$on('openSignUp', () => {
-          this.openLoginForm();
-          })
-        },
-        methods: {
-            openLoginForm(){
-                this.clickLogin = !this.clickLogin;
-            },
-            closeLoginForm(){
-                this.clickLogin = false;
-            },
-            usernameChange(){
-              let username = document.getElementById("username");
-              let submit = document.getElementById("submit");
-              for(var data of this.datas){
-                  if(data.name == username.value){
-                    alert("Tên đăng nhập đã tồn tại");
-                    
-                    submit.setAttribute("disabled", true);
-                    return false;
-                }
-              } 
-              submit.removeAttribute("disabled"); 
-              return true;
-
-            },
-            signUp(){    
-                let username = document.getElementById("username").value;
-                let pass = document.getElementById("password").value;
-                let mail = document.getElementById("email").value;                
-
-                const storeRef = firebase.database().ref(username );
-                storeRef.set({
-                  name:username,
-                   password:pass,
-                    email:mail,
-                    picture:this.picture
-                });
-                this.closeLoginForm();
-                EventBus.$emit('openLogin');
-                return true;
-            },
-
-            switchSign() {
-                this.closeLoginForm();
-                EventBus.$emit('openLogin');
-            },
-
-            uploadPicture(event){
-              this.picture = event;
-
-            }
+export default{
+    data(){
+        return{
+            clickLogin: false,
+            image: null
         }
+    },
+    components:{
+
+    },
+    mounted(){
+       
+    },
+    methods: {
+        openLoginForm(){
+            this.clickLogin = !this.clickLogin;
+        },
+        closeLoginForm(){
+            this.clickLogin = false;
+        },
+
+        upload(event){
+          console.log("up", event.target.files[0]);
+          this.image = event.target.files[0];
+        },
+        switchSign() {
+            this.closeLoginForm();
+            EventBus.$emit('openLogin');
+        },
+
+        
+    }
 
     }
 </script>

@@ -40,7 +40,7 @@
 
         data(){
             return{
-                
+                clickLogin: false
             }
         },
         mounted(){

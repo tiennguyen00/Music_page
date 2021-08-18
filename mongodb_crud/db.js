@@ -1,11 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-const dbname = "Songs";
 const url = "mongodb://localhost:27017";
 const mongoOptions = {useNewUrlParser: true};
 
+const dbname = "Songs";
+
 const state = {
-    db: null
+    db: null,
+    dbUsers: null
 }
 
 const connect = (callback) => {
@@ -23,12 +25,13 @@ const connect = (callback) => {
         });
     }
 }
+const getDB = () => {
+    return state.db;
+}
+
 
 const getPrimaryKey = (_id)=>{
     return ObjectID(_id);
-}
-const getDB = () => {
-    return state.db;
 }
 
 module.exports = {getDB, connect, getPrimaryKey};

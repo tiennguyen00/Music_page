@@ -11,6 +11,31 @@ const collection = "Songs";
 var cors = require('cors')
 app.use(cors())
 
+//Thêm vào để có thể tải fili binary (ảnh, tài liệu, ..) vào database
+var multer = require('multer');
+//Validation cho hình ảnh được truyền vào
+const storage  = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb){
+        cb(null, new Date().toISOString().replace(/:|\./g,'') + ' - ' + file.originalname);
+    }
+});
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png')
+        cb(null, true);
+    else
+        cb(null, false);
+}
+const upload = multer({
+    storage: storage, 
+    limits: {
+        fileSize: 1024*1024*5
+    },
+    fileFilter: fileFilter
+});
+
 //Kết nối đến database
 db.connect((err)=>{
     if(err){
@@ -39,6 +64,15 @@ app.get('/getSongs', (req, res)=>{
         }
     })
 })
+app.get('/getUsers', (req, res)=>{
+    db.getDB().collection("Users").find({}).toArray((err, document)=>{
+        if(err)
+            console.log(err);
+        else{
+            res.json(document);
+        }
+    })
+})
 
 //Server sẽ trả về cho ngừi dùng thông tin mà họ đã người, lúc này sẽ bắt và insert nó vào database
 app.post('/', (req, res)=>{
@@ -51,6 +85,21 @@ app.post('/', (req, res)=>{
             res.json({result: result, document: result.ops[0]});
     })
 })
+//Thêm một user vào database
+app.post("/addUser", upload.single('image') ,(req, res) => {
+    const userInput = req.body;
+    userInput.image = req.file.path;
+    console.log("Path: ", req.file.path)
+
+ 
+    db.getDB().collection("Users").insertOne(userInput, (err, result)=>{
+        if(err)
+            console.log(err);
+        else
+            res.json({result: result, document: result.ops[0]});
+    })
+})
+
 //Xóa một document nào đó theo id của nó (ytong ObjectId)
 app.delete('/:id', (req, res)=>{
     const songID = req.params.id;
